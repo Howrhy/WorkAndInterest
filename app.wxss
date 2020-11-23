@@ -1,4 +1,7 @@
 /**app.wxss**/
+@import '/component/iView/button/index.wxss';
+@import '/component/iView/radio/index.wxss';
+@import '/component/iView/input/index.wxss';
 page{
    height: 100%;
    font-family: 'Microsoft YaHei', Helvetica, sans-serif;

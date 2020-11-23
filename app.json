@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
     "pages/pixiv/pixiv",
@@ -19,38 +19,41 @@
     "pages/gendertestpaper/gendertestpaper",
     "pages/gendertestpaperseccuss/gendertestpaperseccuss",
     "pages/feedback/feedback",
-    "pages/web/web"
+    "pages/web/web",
+    "pages/myProfile/myProfile",
+    "pages/ranking/ranking"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fb7299",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#707070",
     "navigationBarTitleText": "首页",
-    "navigationBarTextStyle":"#fff"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color": "#fff",
+    "color": "#707070",
     "borderStyle": "white",
-    "selectedColor": "#71dcff",
-    "backgroundColor":"#4f76e4",
+    "selectedColor": "#ff7473",
+    "backgroundColor": "white",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "images/icon/home.png",
-        "selectedIconPath":"images/icon/home_1.png"
+        "selectedIconPath": "images/icon/home_1.png"
       },
       {
-        "pagePath": "pages/classification/classification",
-        "text": "分类",
-        "iconPath": "images/icon/classify.png",
-        "selectedIconPath": "images/icon/classify_1.png"
+        "pagePath": "pages/ranking/ranking",
+        "text": "排行榜",
+        "iconPath": "images/icon/ranking.png",
+        "selectedIconPath": "images/icon/ranking_1.png"
       },
       {
         "pagePath": "pages/personalCenter/personalCenter",
-        "text": "个人中心",
+        "text": "我的",
         "iconPath": "images/icon/personalCenter.png",
         "selectedIconPath": "images/icon/personalCenter_1.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
