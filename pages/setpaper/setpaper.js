@@ -11,38 +11,44 @@ Page({
     tolicarr2: [],
     toView: 'red',
     scrollTop: 0,
-    h:'400px',
-    h2:'0px',
-    rotate:'rotate(90deg)',
-    rotate2:'rotate(0deg)',
-    userid:'',
-    title:'',
+    h: '400px',
+    h2: '0px',
+    rotate: 'rotate(90deg)',
+    rotate2: 'rotate(0deg)',
+    userid: '',
+    title: '',
     overt: false,
-    multiArray: [['娱乐', '生活', '职业', '综合'], config.setclasslay[0].minclass],
+    multiArray: [
+      ['娱乐', '生活', '职业', '综合'], config.setclasslay[0].minclass
+    ],
     multiIndex: [0, 0],
-    options:[],
-    state:false,
-    page1:0,
-    page2:0,
-    nodata1:false,
-    nodata2:false,
-    state1:true,
+    options: [],
+    state: false,
+    page1: 0,
+    page2: 0,
+    nodata1: false,
+    nodata2: false,
+    state1: true,
     state2: true,
-    seachstate1:true,
-    seachstate2:true,
+    seachstate1: true,
+    seachstate2: true,
     userInfo: {},
-    multiArray1: [['娱乐', '生活', '职业', '综合', '所有'], config.classlay[0].minclass],
+    multiArray1: [
+      ['娱乐', '生活', '职业', '综合', '所有'], config.classlay[0].minclass
+    ],
     multiIndex1: [0, 0],
     search1: '',
     overt1: true,
-    multiArray2: [['娱乐', '生活', '职业', '综合', '所有'], config.classlay[0].minclass],
+    multiArray2: [
+      ['娱乐', '生活', '职业', '综合', '所有'], config.classlay[0].minclass
+    ],
     multiIndex2: [0, 0],
     search2: '',
     overt2: true,
-    paperSubject:true,
-    submissionstate:true
+    paperSubject: true,
+    submissionstate: true
   },
-  onLoad: function (){
+  onLoad: function () {
     let setmaxclass = JSON.parse(JSON.stringify(config.setmaxclass))
     this.setData({
       ['multiArray1[1]']: [],
@@ -67,15 +73,14 @@ Page({
           success: function (res) {
             wx.navigateBack({
               delta: 1,
-              success: function () {
-              }
+              success: function () {}
             })
           }
         })
       }
     })
 
-    api.getinformation().then((data)=>{
+    api.getinformation().then((data) => {
       let defaults = data.data
       this.setData({
         multiIndex: defaults.defaulttestpaperclassify,
@@ -83,7 +88,7 @@ Page({
         ['multiArray[1]']: config.setclasslay[defaults.defaulttestpaperclassify[0]].minclass,
       })
 
-      if (defaults.Numberofreports >=100){
+      if (defaults.Numberofreports >= 100) {
         wx.showModal({
           title: '',
           showCancel: false,
@@ -91,8 +96,7 @@ Page({
           success: function (res) {
             wx.navigateBack({
               delta: 1,
-              success: function () {
-              }
+              success: function () {}
             })
           }
         })
@@ -122,9 +126,9 @@ Page({
         })
       }
       //对已经加入试卷的题目做标记
-      this.data.options.map(itme=>{
-        data.data.map(itme2=>{
-          if (itme === itme2._id){
+      this.data.options.map(itme => {
+        data.data.map(itme2 => {
+          if (itme === itme2._id) {
             itme2.add = true
           }
         })
@@ -133,7 +137,7 @@ Page({
         tolicarr: this.data.tolicarr.concat(data.data),
         state: true,
         state1: true,
-        seachstate1:true
+        seachstate1: true
       })
     })
     this.setData({
@@ -160,7 +164,7 @@ Page({
           nodata2: true
         })
       }
-       //对已经加入试卷的题目做标记
+      //对已经加入试卷的题目做标记
       this.data.options.map(itme => {
         data.data.map(itme2 => {
           if (itme === itme2._id) {
@@ -168,12 +172,12 @@ Page({
           }
         })
       })
- 
+
       this.setData({
         tolicarr2: this.data.tolicarr2.concat(data.data),
         state: true,
         state2: true,
-        seachstate2:true
+        seachstate2: true
       })
     })
     this.setData({
@@ -196,28 +200,28 @@ Page({
     }
     this.setData(data);
   },
-  oninputtitle: function (e){
+  oninputtitle: function (e) {
     this.setData({
       title: e.detail.value
     })
   },
-  onmysubjet(){
+  onmysubjet() {
     this.setData({
       paperSubject: true,
     })
   },
-  onmycollectionsubjet(){
+  onmycollectionsubjet() {
     this.setData({
       paperSubject: false,
     })
   },
-  switch1Change: function (e){
+  switch1Change: function (e) {
     this.setData({
       overt: e.detail.value
     })
   },
   tolower: function () {
-    if (!this.data.nodata1){
+    if (!this.data.nodata1) {
       this.getdata1()
     }
   },
@@ -244,7 +248,7 @@ Page({
       }
     })
   },
-  onadd: function(e){
+  onadd: function (e) {
     for (let i = 0; i < this.data.options.length; i++) {
       if (this.data.options[i] === e.target.id) {
         wx.showToast({
@@ -260,8 +264,8 @@ Page({
       options: this.data.options
     })
     //同步我的试卷
-    for (let i = 0; i < this.data.tolicarr.length;i++){
-      if (this.data.tolicarr[i]._id === e.target.id){
+    for (let i = 0; i < this.data.tolicarr.length; i++) {
+      if (this.data.tolicarr[i]._id === e.target.id) {
         this.setData({
           ['tolicarr[' + i + '].add']: true
         })
@@ -303,8 +307,8 @@ Page({
     })
   },
   onadd2: function (e) {
-    for (let i = 0; i < this.data.options.length;i++){
-      if (this.data.options[i] === e.target.id){
+    for (let i = 0; i < this.data.options.length; i++) {
+      if (this.data.options[i] === e.target.id) {
         wx.showToast({
           title: '该题已加入试卷,不能重复加入',
           icon: 'none',
@@ -343,7 +347,7 @@ Page({
         })
       }
     }
-     // 同步我收藏的试卷
+    // 同步我收藏的试卷
     for (let i = 0; i < this.data.tolicarr2.length; i++) {
       if (this.data.tolicarr2[i]._id === e.target.id) {
         this.setData({
@@ -360,29 +364,26 @@ Page({
       }
     })
   },
-  verification: function(){
+  verification: function () {
     let classlay = this.data.multiArray[1][this.data.multiIndex[1]] || this.data.multiArray[0][this.data.multiIndex[0]]
     let state = true;
     let content = '';
-    if (this.data.title.trim() === ''){
+    if (this.data.title.trim() === '') {
       state = false
       content = '试卷名称必须填写'
-    }
-    else if (this.data.title.length > 40) {
+    } else if (this.data.title.length > 40) {
       state = false
       content = '试卷名称不能超过40字'
-    }
-    else if (this.data.options.length===0){
+    } else if (this.data.options.length === 0) {
       state = false
       content = '必须加入至少一道题目'
     }
-    if(!state){
+    if (!state) {
       wx.showModal({
         title: '',
         showCancel: false,
         content: content,
-        success: function (res) {
-        }
+        success: function (res) {}
       })
     }
     return state;
@@ -395,11 +396,10 @@ Page({
       this.setData({
         submissionstate: false
       })
-    }
-    else {
+    } else {
       return
     }
-    let userid='' 
+    let userid = ''
     wx.getStorage({
       key: 'login_key',
       success: (res) => {
@@ -443,8 +443,7 @@ Page({
                   }
                 }
               })
-            }
-            else if (res.data === 2){
+            } else if (res.data === 2) {
               wx.showToast({
                 title: '试卷名称已存在',
                 icon: 'none',
@@ -453,8 +452,7 @@ Page({
               this.setData({
                 submissionstate: true
               })
-            }
-            else {
+            } else {
               wx.showToast({
                 title: '失败',
                 icon: 'none',
@@ -464,18 +462,17 @@ Page({
           }
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         wx.showModal({
           title: '页面提示',
           showCancel: false,
           content: '您尚未登录，无法进行此操作',
-          success: function (res) {
-          }
+          success: function (res) {}
         })
       },
-      complete: function(res) {},
+      complete: function (res) {},
     })
-  }, 
+  },
   over: function () {
     // console.log(33333)
   },
@@ -514,7 +511,7 @@ Page({
       tolicarr: [],
       page1: 0,
       nodata1: false,
-      seachstate1:false
+      seachstate1: false
     })
     if (this.data.state1) {
       this.getdata1()
@@ -552,10 +549,202 @@ Page({
       tolicarr2: [],
       page2: 0,
       nodata2: false,
-      seachstate2:false
+      seachstate2: false
     })
     if (this.data.state2) {
       this.getdata2()
     }
+  },
+  user_answer: {},
+  checked: 0,
+  data: {
+    question_list: [{
+        question_id: '1',
+        index: 1,
+        question_type: 0,
+        type_name: "单选",
+        paper_id: '1',
+        choice_content: "《党政领导干部选拔任用工作条例》规定，选拔任用党政领导干部，必须经过民主推荐。民主推荐结果作为选拔任用的重要参考，在几年内有效？",
+        choice_all: [{
+            value: 'A',
+            name: '半年'
+          },
+          {
+            value: 'B',
+            name: '一年',
+          },
+          {
+            value: 'C',
+            name: '二年'
+          },
+          {
+            value: 'D',
+            name: '三年'
+          }
+        ],
+        choice_answer: 'A',
+        begin: 1,
+        end: 0
+      },
+      {
+        question_id: '2',
+        index: 2,
+        question_type: 1,
+        type_name: "多选",
+        paper_id: '1',
+        choice_content: "1+1等于几？",
+        choice_all: [{
+            value: 'A',
+            name: '1'
+          },
+          {
+            value: 'B',
+            name: '2',
+          },
+          {
+            value: 'C',
+            name: '3'
+          },
+          {
+            value: 'D',
+            name: '4'
+          }
+        ],
+        choice_answer: ['B'],
+        begin: 0,
+        end: 0
+      },
+      {
+        question_id: '3',
+        index: 3,
+        question_type: 0,
+        type_name: "单选",
+        paper_id: '1',
+        choice_content: "2+2等于几？",
+        choice_all: [{
+            value: 'A',
+            name: '1'
+          },
+          {
+            value: 'B',
+            name: '2',
+          },
+          {
+            value: 'C',
+            name: '3'
+          },
+          {
+            value: 'D',
+            name: '4'
+          }
+        ],
+        choice_answer: 'D',
+        begin: 0,
+        end: 1
+      },
+    ]
+
+  },
+  show_toast: function (message) {
+    wx.showToast({
+      title: message,
+      icon: 'succes',
+      duration: 2000,
+      mask: true
+    })
+  },
+
+  click_next(e) {
+    if (this.checked == 0) {
+      let message = "选项不能为空"
+      this.show_toast(message)
+      return
+    } else {
+      let index = this.data.index
+      index = index + 1
+      this.checked = 0
+      this.setData({
+        answer: '',
+        check_answer: '',
+        index: index,
+        question: this.data.question_list[index]
+      })
+    }
+
+  },
+
+  click_last(e) {
+    if (this.checked == 0) {
+      let message = "选项不能为空"
+      this.show_toast(message)
+      return
+    } else {
+      let index = this.data.index
+      index = index - 1
+      this.checked = 0
+      this.setData({
+        answer: '',
+        check_answer: '',
+        index: index,
+        question: this.data.question_list[index]
+      })
+    }
+  },
+  click_submit(e) {
+    console.log(this.user_answer)
+    this.calculate(this.user_answer)
+  },
+  calculate(dict) {
+    let question_list = this.data.question_list
+    let score = 0
+    for (let i = 0; i < question_list.length; i++) {
+      if (question_list[i].question_type == 1) {
+        if (question_list[i].choice_answer.sort().toString() == dict[i + 1].sort().toString()) {
+          score = score + 20
+        }
+      } else {
+        if (question_list[i].choice_answer == dict[i + 1]) {
+          score = score + 20
+        }
+      }
+    }
+    this.show_toast("分数：" + score)
+    setTimeout(function () {
+      wx.navigateBack({ //返回
+        delta: 1
+      })
+    }, 2000);
+    // this.update();
+    //this.onLoad() //再次加载，实现返回上一页页面刷新
+  },
+  handleChange(e) {
+    let key = e.currentTarget.dataset.question_id
+    let value = e.detail.value
+    this.user_answer[key] = value
+    this.checked = 1
+    this.setData({
+      answer: e.detail.value
+    })
+  },
+  checkboxChange(e) {
+    let key = e.currentTarget.dataset.question_id
+    let value = e.detail.value
+    if (value.length > 0) {
+      this.checked = 1
+    } else {
+      this.checked = 0
+    }
+    this.user_answer[key] = value
+
+    this.setData({
+      check_answer: e.detail.value
+    })
+  },
+  onLoad: function () {
+    let index = 0
+    this.setData({
+      index: index,
+      question: this.data.question_list[index]
+    })
   },
 })

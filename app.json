@@ -21,7 +21,8 @@
     "pages/feedback/feedback",
     "pages/web/web",
     "pages/myProfile/myProfile",
-    "pages/ranking/ranking"
+    "pages/ranking/ranking",
+    "pages/paperlist/paperlist"
   ],
   "window": {
     "backgroundTextStyle": "light",

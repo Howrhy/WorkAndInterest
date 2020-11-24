@@ -1,232 +1,94 @@
-/**index.wxss**/
-page{
-  height: 100%;
-  background: #4f76e4;
-  color: #fff;
-}
-
-.clean:after{
-  display: block;
-  width: 0;
-  height: 0;
-  clear: both;
-  content:"";
-}
-
-.udd44d4d421{
+.page {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  color: black;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: ‘Trebuchet MS’, ‘Lucida Sans Unicode’, ‘Lucida Grande’, ‘Lucida Sans’, Arial, sans-serif;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  /* margin: 20rpx; */
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 0px;
-}
-
-.banner{
-  width: 100%;
-}
-.banner image{
-  width: 100%;
-}
-
-.iscompltet{
-  display: inline-block;
-  font-size: 30rpx;
-  padding-top:30rpx;
-  padding-right: 10rpx;
-}
-
-
-.selectclassbox{
-  width: 100%;
-  padding-left: 20rpx;
-  position: fixed;
-  background: -webkit-gradient(linear, left top, left bottom, from(#4f76e4), to(#56a0fe) );
-  /* box-shadow: 0rpx 1rpx 20rpx 1rpx #e6e6e6; */
-  z-index: 999999;
-  border-bottom-right-radius: 100rpx;
-   border-bottom-left-radius: 100rpx;
-}
-
-.searchbox {
-  margin: 20rpx auto;
+.times {
   display: flex;
-  width: 90%;
-}
-
-.searchbut{
-  width: 20%;
-  margin-left: 20rpx;
-  font-size: 30rpx;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fb7299), to(#E84B6E) );
-  color: #fff;
-}
-
-.searchbox input{
-  border: 1rpx solid #e6e6e6;
-  border-radius: 10rpx; 
-  margin-top: 10rpx;
-  font-size: 28rpx;
-  width: 60%;
-  height:60rpx;
-  padding-left: 20rpx;
-}
-
-.selectclass{
-  float: left;
-  padding-top:30rpx;
-  padding-bottom:30rpx;
-  padding-right: 20rrpx;
-  font-size: 30rpx;
-  margin-left: 5%;
-  width: 50%;
-}
-
-scroll-view{
-  margin-top: 204rpx;
-   /* background: -webkit-gradient(linear, left top, left bottom, from(b), to(#E84B6E) ); */
-}
-
-.selectovert{
-  float: right;
-}
-.selectovert text{
-  padding-right: 10rpx;
-}
-
-
-.items{
-  display: flex;
-  width: 100%;
-  min-height: 100rpx;
+  flex-wrap: wrap;
   justify-content: flex-start;
-  flex-direction:column;
 }
 
-.items .item{
-  flex-grow:1;
-  color: #000;
-  margin-bottom: 30rpx;
-  padding-bottom: 10rpx;
+.weather {
+  text-align: center;
+  font-size: 40rpx;
+  line-height: 1.4;
+  opacity: 0.65;
 }
-.items .item .iconbox{
-  /* display: flex; */
-  flex-direction:row;
-  align-items:center ;
-    width:100%;
-  padding-bottom: 20rpx;
-  border-bottom: 2rpx solid #fff;
-}
-.items .item .iconbox view{
-  padding-left: 10rpx;
-  font-size: 30rpx;
-}
-.items .item{
+
+.weather-wrapper {
   position: relative;
-  margin: 10rpx auto;
-  border-radius: 20rpx;
-  align-items: center;
-  flex-grow:1;
-  padding: 20rpx 30rpx 20rpx 20rpx;
-  background: -webkit-gradient(linear, left top, left bottom, from(#71dcff), to(#24b0e8) );
-  color: #fff;
-   width: 86%;
-  height: 100%;
-  display: flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.items .item .serialnumber{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 0;
-  height: 0;
-  border-top: 80rpx solid #4f76e4;
-  border-right: 80rpx solid transparent;
-  text-align: center;
-}
-
-.items .item .operation{
   width: 100%;
+  height: 100%;
+}
+
+.weather-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.view_tupian_wenzi {
+  height: 120rpx;
   display: flex;
-  flex-direction:row;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
-  padding-top: 20rpx;
-  font-size: 28rpx;
+  /* 圆角 */
+  border-radius: 20rpx;
+  /* 边 */
+  border: 3rpx solid #E0E3DA;
+  box-shadow: 5rpx 5rpx 5rpx 5rpx #E0E3DA;
+  background-color: #ffffff;
+  margin: 30rpx;
+  /* padding使得文字和图片不至于贴着边框 */
+  padding: 30rpx;
+
 }
 
+/* 图片 */
 
-.items .item .operation .classify{
-    background: -webkit-gradient(linear, left top, left bottom, from(#0c47eb), to(#4f76e4) );
-  border-radius: 30rpx;
-  padding: 10rpx 20rpx;
-  min-width: 70rpx;
-  text-align: center;
+.image_1 {
+  width: 150rpx;
+  height: 100rpx;
 }
 
-.items .item .operation .username{
-  width: 204rpx;
-  overflow: auto;
-  white-space:nowrap;
-}
-.items .item .operation .username::-webkit-scrollbar{
-  display: none;
+.image_2 {
+  position: relative;
+  right: 5px;
+  width: 150rpx;
+  height: 100rpx;
 }
 
-.items .item .operation .collect{
-   background: -webkit-gradient(linear, left top, left bottom, from(#0c47eb), to(#4f76e4) );
-  border-radius: 30rpx;
-  padding: 10rpx;
+/* 包裹两行文字 */
+
+.view_wenzi2 {
+  width: 100%;
+  margin-left: 25rpx;
+  display: flex;
+  flex-direction: column;
 }
 
-.items .item .operation .iscomplete{
-  background: -webkit-gradient(linear, left top, left bottom, from(#f8b603), to(#fdd32c) );
+/* 小字 */
+
+.text_small {
+  position: relative;
+  display: flex;
+  font-size: 30rpx;
+  word-break: break-all;
+  color: #7a7878;
+  margin-top: 10rpx
 }
 
-.items .item .operation button{
-  padding: 0rpx 18rpx;
-  text-align: center;
-  font-size: 28rpx;
-  margin-right: 20rpx;
-  height: 70rpx;
-}
-
-
-.items .item .iconbox view.taxonomy{
-  /* float: right; */
-  margin: 10rpx 0rpx;
-  font-size: 24rpx;
-}
-
-.tips{
-  text-align: center;
-  color: #e6e6e6;
-}
-
-.tips2{
-  margin: 100rpx auto;
-  color: #e6e6e6;
-  text-align: center;
-}
-
-.buttontis{
- text-align: center;
- margin-bottom: 20rpx;
- font-size: 30rpx;
- color:#cdcdcd;
+.z_title {
+  width: 200px;
+  height: 100px;
+  margin-left: 20%;
 }

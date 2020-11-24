@@ -6,8 +6,7 @@ const bilibiliurlr = 'https://bangumi.bilibili.com/jsonp/timeline_v2_global.ver?
 
 const bilibiliurlz = 'https://bangumi.bilibili.com/jsonp/timeline_v2_cn.ver?callback=gc_timeline&type=jsonp&_=1533609502097'
 let setmaxclass = []
-let setclasslay = [
-  {
+let setclasslay = [{
     maxclass: '娱乐',
     minclass: ['电影', '游戏', '动漫', '小说', '漫画', '电视剧']
   },
@@ -17,32 +16,37 @@ let setclasslay = [
   },
   {
     maxclass: '职业',
-    minclass: ['教师', 'up主', '主播', '工人', '记者', '演员', '厨师', '医生', '护士', '司机', '军人', '律师', '会计', '店员', '出纳', '作家', '导游', '警察', '歌手', '画家', '裁缝', '翻译', '法官', '保安', '服务员', '清洁工', '建筑师', '理发师', '采购员', '设计师', '消防员', '机修工', '推销员', '魔术师', '邮递员', '售货员', '救生员', '工程师', '飞行员', 'AV', '管理员', '机械师', '经纪人', '审计员', '漫画家', '园艺师', '科学家', '主持人']
+    minclass: ['画家',
+      '裁缝',
+      '翻译',
+      '魔术师',
+      '科学家',
+      '主持人'
+    ]
   },
   {
     maxclass: '其他',
-    minclass: ['综合','撒打算']
+    minclass: ['综合', '撒打算']
   },
 ]
-let maxclass=[]
-let classlay = [
-  {
-    maxclass:'娱乐',
-    minclass: ['电影', '游戏', '动漫', '小说', '漫画','电视剧']
+let maxclass = []
+let classlay = [{
+    maxclass: '娱乐',
+    minclass: ['电影', '游戏', '动漫']
   },
   {
     maxclass: '生活',
-    minclass: ['饮食', '健康', '常识','亲友','情侣']
+    minclass: ['饮食', '健康', '常识', '亲友', '情侣']
   },
   {
     maxclass: '职业',
-    minclass: ['教师', 'up主', '主播', '工人', '记者', '演员', '厨师', '医生', '护士', '司机', '军人', '律师', '会计', '店员', '出纳', '作家', '导游', '警察', '歌手', '画家', '裁缝', '翻译', '法官', '保安', '  ','服务员', '清洁工', '建筑师', '理发师', '采购员', '设计师', '消防员', '机修工', '推销员', '魔术师', '邮递员', '售货员', '救生员', '工程师', '飞行员', '管理员', '机械师', '经纪人','审计员', '漫画家', '园艺师', '科学家','主持人']
+    minclass: ['教师', 'up主', '主播']
   },
   {
     maxclass: '综合',
     minclass: ['综合']
   },
-  ]
+]
 
 
 module.exports = {
@@ -50,7 +54,8 @@ module.exports = {
   pixivcookie: pixivcookie,
   bilibiliurlr: bilibiliurlr,
   bilibiliurlz: bilibiliurlz,
-  server: 'http://192.168.1.14/',
+  server: 'https://guhang.fun/',
+  // server: 'https://192.168.1/',
   maxclass: maxclass,
   classlay: classlay,
   setmaxclass: setmaxclass,

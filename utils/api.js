@@ -1,22 +1,22 @@
 const config = require('./config.js')
 
-function getpixiv(){
- return new Promise((resolve,reject)=>{
-   wx.request({
-     url: config.pixivurl,
-     dataType: 'jsonp',
-     headers:{
-       cookie: config.pixivcookie
-     },
-     success: function (data) {
-       resolve(data)
-     }
-   })
- })
+function getpixiv() {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: config.pixivurl,
+      dataType: 'jsonp',
+      headers: {
+        cookie: config.pixivcookie
+      },
+      success: function (data) {
+        resolve(data)
+      }
+    })
+  })
 }
 
-function getbilibilir(){
-  return new Promise((resolve,reject)=>{
+function getbilibilir() {
+  return new Promise((resolve, reject) => {
     wx.request({
       url: config.bilibiliurlr,
       dataType: 'jsonp',
@@ -107,7 +107,7 @@ function getmypaper(parameter) {
           method: 'GET',
           data: {
             userid: res.data,
-            page:parameter.page,
+            page: parameter.page,
             classify: parameter.classify,
             keyword: parameter.search,
             overt: parameter.overt,
@@ -156,7 +156,7 @@ function getsubject(classify) {
         })
       },
     })
-    
+
   })
 }
 
@@ -192,7 +192,7 @@ function reportsubject(id) {
           method: 'GET',
           data: {
             userid: res.data,
-            id:id
+            id: id
           },
           success: (data) => {
             resolve(data)
@@ -277,13 +277,13 @@ function getmycollectionTopic(parameter) {
       success: (res) => {
         wx.request({
           url: config.server + 'xcx/getmycollectionTopic.php',
-          method: 'GET',  
+          method: 'GET',
           data: {
             userid: res.data,
-            page:parameter.page,
+            page: parameter.page,
             classify: parameter.classify,
             keyword: parameter.search,
-            overt: parameter.overt 
+            overt: parameter.overt
           },
           success: (data) => {
             resolve(data)
@@ -308,7 +308,7 @@ function getmycollectionPaper(parameter) {
             page: parameter.page,
             classify: parameter.classify,
             keyword: parameter.search,
-            overt: parameter.overt 
+            overt: parameter.overt
           },
           success: (data) => {
             resolve(data)
@@ -366,32 +366,49 @@ function sethavefinishedlist(list) {
 }
 
 // 获取符合搜索条件的试卷
-function getsearchpaper(classify, search, page, iscomplete) {
+function getissues() {
   return new Promise((resolve, reject) => {
     wx.getStorage({
       key: 'login_key',
       complete: (res) => {
         wx.request({
-          url: config.server + 'xcx/getsearchpaper.php',
+          url: config.server + 'xcx/get_issues.php',
+          method: 'GET',
+          data: {},
+          success: (data) => {
+            resolve(data)
+          }
+        })
+      },
+
+    })
+
+  })
+}
+
+// 获取这一期下的所有试卷
+function getpapers(issueId) {
+  return new Promise((resolve, reject) => {
+    wx.getStorage({
+      key: 'login_key',
+      complete: (res) => {
+        wx.request({
+          url: config.server + 'xcx/get_papers.php',
           method: 'GET',
           data: {
-            classify: classify,
-            keyword: search,
-            page: page,
-            overt: true,
-            userid: res.data,
-            iscomplete: iscomplete
+            issueId: issueId
           },
           success: (data) => {
             resolve(data)
           }
         })
       },
-      
+
     })
-   
+
   })
 }
+
 
 // 获取试卷及试卷下的题目
 function getTestQuestions(paperid) {
@@ -479,7 +496,7 @@ function setinformation(username, gender) {
           url: config.server + 'xcx/setinformationdata.php',
           method: 'GET',
           data: {
-            id:res.data,
+            id: res.data,
             username: username,
             gender: gender
           },
@@ -489,7 +506,7 @@ function setinformation(username, gender) {
         })
       },
     })
-   
+
   })
 }
 
@@ -523,7 +540,8 @@ module.exports = {
   getpaperInTopic: getpaperInTopic,
   getmycollectionPaper: getmycollectionPaper,
   sethavefinishedlist: sethavefinishedlist,
-  getsearchpaper: getsearchpaper,
+  getissues: getissues,
+  getpapers: getpapers,
   getTestQuestions: getTestQuestions,
   sethavefinishedpaper: sethavefinishedpaper,
   getonepaper: getonepaper,

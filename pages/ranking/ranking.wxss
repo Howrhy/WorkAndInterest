@@ -5,9 +5,22 @@ page {
   color: #2c2c2c;
 }
 
+.list-title {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
 button {
   color: #fff;
   background: -webkit-gradient(linear, left top, left bottom, from(#fb7299), to(#E84B6E));
+}
+
+.score {
+  color: #ff7473;
+  position: absolute;
+  margin-right: 10px;
 }
 
 .userinfo {
@@ -79,10 +92,12 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: relative;
 }
 
 .items .item .iconbox text {
   padding-left: 10rpx;
+  position: relative;
 }
 
 .items .item navigator {
@@ -96,4 +111,38 @@ button {
 .items .item image {
   width: 50rpx;
   height: 50rpx;
+}
+
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.temp {
+  text-align: center;
+  font-size: 200rpx;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.weather {
+  text-align: center;
+  font-size: 40rpx;
+  line-height: 1.4;
+  opacity: 0.65;
+}
+
+.weather-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.weather-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }

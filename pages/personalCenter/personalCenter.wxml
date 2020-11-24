@@ -67,7 +67,7 @@
     <navigator hover-class="none" url="../setpaper/setpaper">
       <view class='iconbox'>
         <image class='icon' src='../../images/icon/newtestpaper.png'></image>
-        <text class='content'>自定义试卷</text>
+        <text class='content'>答题页面</text>
       </view>
       <image class='rg' src='../../images/icon/right.png'></image>
     </navigator>

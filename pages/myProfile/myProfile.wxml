@@ -1,5 +1,3 @@
-<wxs module="enumItem" src="../../wxs/enumItem.wxs"></wxs>
-
 <form bindsubmit='formSubmit'>
   <i-panel title="真实姓名">
     <i-input value="{{ userInfo.realName }}" name="realName" maxlength="-1" />

@@ -1,0 +1,5 @@
+<view class='container'>
+  <block wx:for="{{paper_list}}" wx:key="index">
+    <view class='text-content'>{{item.name}}</view> 
+  </block>
+</view>

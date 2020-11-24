@@ -1,76 +1,22 @@
-<!--index.wxml-->
-
-<view class="userinfo" bindtap='getUserInfo'>
-  <button wx:if="{{!userInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-  <block wx:else>
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </block>
-</view>
-
-<view class='items'>
-  <view class='item'>
-    <navigator hover-class="none" url="../myProfile/myProfile">
-      <view class='iconbox'>
-        <image class='icon' src='../../images/icon/myProfile.png'></image>
-        <text class='content'>个人资料</text>
+<!--ranking.wxml-->
+<view class='weather-wrapper'>
+  <image class='weather-bg' src='../../images/qa_background.jpg'></image>
+  <view class='items'>
+    <view wx:for='{{datas}}' class='items' wx:key='{{index}}'>
+      <view>{{item.maxclass}}</view>
+      <view class='items'>
+        <view wx:for-item="selet" wx:for='{{item.minclass}}' wx:key='{{index}}' class='item'>
+          <navigator hover-class='none' url='{{"../gendertest/gendertest?class="+selet}}'>
+            <!-- <image src='../../images/icon/six.png'></image> -->
+            <!-- <view class='measss'>{{selet}}</view> -->
+            <view class='iconbox'>
+              <image class='icon' src='../../images/icon/myProfile.png'></image>
+              <text class='content'>{{selet}}</text>
+              <text class='score'>{{selet}}分</text>
+            </view>
+          </navigator>
+        </view>
       </view>
-      <image class='rg' src='../../images/icon/right.png'></image>
-    </navigator>
+    </view>
   </view>
-  <view class='item'>
-    <navigator hover-class="none" url="../myTopic/myTopic">
-      <view class='iconbox'>
-        <image class='icon' src='../../images/icon/testbank.png'></image>
-        <text class='content'>我的题目</text>
-      </view>
-      <image class='rg' src='../../images/icon/right.png'></image>
-    </navigator>
-  </view>
-  <view class='item'>
-    <navigator hover-class="none" url="../mycollectionTopic/mycollectionTopic">
-      <view class='iconbox'>
-        <image class='icon' src='../../images/icon/mycollection_3.png'></image>
-        <text class='content'>收藏的题目</text>
-      </view>
-      <image class='rg' src='../../images/icon/right.png'></image>
-    </navigator>
-  </view>
-  <view class='item itemsclass'>
-    <navigator hover-class="none" url="../setsubject/setsubject">
-      <view class='iconbox'>
-        <image class='icon' src='../../images/icon/customtopic.png'></image>
-        <text class='content'>自定义题目</text>
-      </view>
-      <image class='rg' src='../../images/icon/right.png'></image>
-    </navigator>
-  </view>
-  <view class='item'>
-    <navigator hover-class="none" url="../mypaper/mypaper">
-      <view class='iconbox'>
-        <image class='icon' src='../../images/icon/testpaper.png'></image>
-        <text class='content'>我的试卷</text>
-      </view>
-      <image class='rg' src='../../images/icon/right.png'></image>
-    </navigator>
-  </view>
-  <view class='item'>
-    <navigator hover-class="none" url="../mycollectionPaper/mycollectionPaper">
-      <view class='iconbox'>
-        <image class='icon' src='../../images/icon/mycollection_1.png'></image>
-        <text class='content'>收藏的试卷</text>
-      </view>
-      <image class='rg' src='../../images/icon/right.png'></image>
-    </navigator>
-  </view>
-  <view class='item itemsclass'>
-    <navigator hover-class="none" url="../setpaper/setpaper">
-      <view class='iconbox'>
-        <image class='icon' src='../../images/icon/newtestpaper.png'></image>
-        <text class='content'>自定义试卷</text>
-      </view>
-      <image class='rg' src='../../images/icon/right.png'></image>
-    </navigator>
-  </view>
-
 </view>
