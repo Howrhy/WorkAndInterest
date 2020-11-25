@@ -617,28 +617,20 @@ Page({
       {
         question_id: '3',
         index: 3,
-        question_type: 0,
-        type_name: "单选",
+        question_type: 2,
+        type_name: "判断",
         paper_id: '1',
-        choice_content: "2+2等于几？",
+        choice_content: "2+2等于4",
         choice_all: [{
-            value: 'A',
-            name: '1'
+            value: '1',
+            name: '正确'
           },
           {
-            value: 'B',
-            name: '2',
-          },
-          {
-            value: 'C',
-            name: '3'
-          },
-          {
-            value: 'D',
-            name: '4'
+            value: '0',
+            name: '错误',
           }
         ],
-        choice_answer: 'D',
+        choice_answer: '1',
         begin: 0,
         end: 1
       },
@@ -738,6 +730,19 @@ Page({
 
     this.setData({
       check_answer: e.detail.value
+    })
+  },
+  judgeChange(e) {
+    console.log(e)
+    let key = e.currentTarget.dataset.question_id
+    let value = "0"
+    if (e.detail.value == "正确") {
+      value = "1"
+    }
+    this.user_answer[key] = value
+    this.checked = 1
+    this.setData({
+      judge_answer: e.detail.value
     })
   },
   onLoad: function () {

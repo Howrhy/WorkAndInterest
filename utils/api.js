@@ -510,20 +510,6 @@ function setinformation(username, gender) {
   })
 }
 
-
-// 获取试卷和题目的分类
-function getallclassfiy() {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: config.server + 'xcx/getallclassfiy.php',
-      method: 'GET',
-      success: (data) => {
-        resolve(data)
-      }
-    })
-  })
-}
-
 module.exports = {
   getpixiv: getpixiv,
   getbilibilir: getbilibilir,
@@ -549,6 +535,5 @@ module.exports = {
   collectiontestPaper: collectiontestPaper,
   reportpaper: reportpaper,
   iscollectionandreporting: iscollectionandreporting,
-  setinformation: setinformation,
-  getallclassfiy: getallclassfiy
+  setinformation: setinformation
 }

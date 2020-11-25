@@ -13,7 +13,7 @@ Page({
     page:0,
     nodata:false,
     state2: true,
-    multiArray: [['娱乐', '生活', '职业', '综合', '所有'], config.classlay[0].minclass],
+    multiArray: [['娱乐', '生活', '职业', '综合', '所有'], []],
     multiIndex: [0, 0],
     search: '',
     overt: true,

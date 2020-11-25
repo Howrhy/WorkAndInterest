@@ -35,8 +35,7 @@
     "borderStyle": "white",
     "selectedColor": "#ff7473",
     "backgroundColor": "white",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "images/icon/home.png",

@@ -1,22 +1,34 @@
 <!--ranking.wxml-->
-<view class='weather-wrapper'>
-  <image class='weather-bg' src='../../images/qa_background.jpg'></image>
-  <view class='items'>
-    <view wx:for='{{datas}}' class='items' wx:key='{{index}}'>
-      <view>{{item.maxclass}}</view>
-      <view class='items'>
-        <view wx:for-item="selet" wx:for='{{item.minclass}}' wx:key='{{index}}' class='item'>
-          <navigator hover-class='none' url='{{"../gendertest/gendertest?class="+selet}}'>
-            <!-- <image src='../../images/icon/six.png'></image> -->
-            <!-- <view class='measss'>{{selet}}</view> -->
-            <view class='iconbox'>
-              <image class='icon' src='../../images/icon/myProfile.png'></image>
-              <text class='content'>{{selet}}</text>
-              <text class='score'>{{selet}}分</text>
+
+<view class=" ques-section-item">
+  <view class="ques-section-card">
+    <view class="ques-card-head ques-card-bul"></view>
+    <view class="ques-card-title">评分排行榜</view>
+    <scroll-view scroll-y="true" style="height: 80%;">
+      <ul class="ques-card-list" wx:for="{{ranking_list}}" wx:for-item="ranking" wx:key="index">
+        <li wx:if="{{index < 3}}" class=" ques-card-list-{{index+1}}">
+          <view class="ques-list-box clearfix">
+            <view class="ques-list-head">
+              <image class="ques-list-image" src="{{ranking.head_url}}" />
             </view>
-          </navigator>
-        </view>
-      </view>
-    </view>
+            <view class="ques-list-name">
+              <view class="ques-list-name-head">{{ranking.user_name}}</view>
+              <view class="ques-list-name-text">分数：{{ranking.score}}分</view>
+            </view><span class="ques-list-name-icon item-icon00{{index+1}}">{{index+1}}</span>
+          </view>
+        </li>
+        <li wx:if="{{index > 2}}" class="">
+          <view class=" ques-list-box clearfix">
+            <view class="ques-list-head">
+              <image class="ques-list-image" src="{{ranking.head_url}}" />
+            </view>
+            <view class="ques-list-name">
+              <view class="ques-list-name-head">{{ranking.user_name}}</view>
+              <view class="ques-list-name-text">分数：{{ranking.score}}分</view>
+            </view><span class="ques-list-name-icon item-icon000">{{index+1}}</span>
+          </view>
+        </li>
+      </ul>
+    </scroll-view>
   </view>
 </view>

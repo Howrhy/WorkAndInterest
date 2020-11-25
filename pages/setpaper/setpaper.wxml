@@ -4,6 +4,7 @@
   <view class='page'>
     <view class='title'>第{{question.index}}题</view>
     <view class='content'>{{question.choice_content}}({{question.type_name}})</view>
+    <!-- 单选 -->
     <view class='choice' wx:if="{{question.question_type==0}}">
       <radio-group bindchange="handleChange" data-question_id="{{question.index}}">
         <label wx:for="{{question.choice_all}}" wx:for-item="choice" wx:key="{{choice.value}}">
@@ -14,6 +15,7 @@
       </radio-group>
     </view>
     <view class='choice next' wx:if="{{question.question_type==0}}" value="{{answer}}">您选中的是：{{answer}}</view>
+    <!-- 多选 -->
     <view class='choice' wx:if="{{question.question_type==1}}">
       <checkbox-group bindchange="checkboxChange" data-question_id="{{question.index}}">
         <label wx:for="{{question.choice_all}}" wx:for-item="choice" wx:key="{{choice.value}}">
@@ -25,6 +27,17 @@
     </view>
     <view class='choice next' wx:if="{{question.question_type==1}}" value="{{check_answer}}">您选中的是：{{check_answer}}
     </view>
+    <!-- 判断 -->
+    <view class='choice' wx:if="{{question.question_type==2}}">
+      <radio-group bindchange="judgeChange" data-question_id="{{question.index}}">
+        <label wx:for="{{question.choice_all}}" wx:for-item="choice" wx:key="{{choice.value}}">
+          <view>
+            <radio checked="{{choice.checked}}" style='transform:scale(0.7)' value="{{choice.name}}" />
+            {{choice.name}}</view>
+        </label>
+      </radio-group>
+    </view>
+    <view class='choice next' wx:if="{{question.question_type==2}}" value="{{judge_answer}}">您选中的是：{{judge_answer}}</view>
 
     <view class='selfbutton'>
       <button wx:if="{{question.begin == 0}}" class='btn1' type="default" size="mini" bindtap="click_last">上一题</button>

@@ -1,22 +1,24 @@
 <!--index.wxml-->
 <view class='weather-wrapper'>
-  <image class='weather-bg' src='../../images/qa_back.jpg'></image>
-  <image class='z_title' src="../../images/19_5_zhong.png"></image>
+  <image class='weather-bg' src='https://guhang.fun/images/qa_back.jpg'></image>
+  <image class='z_title' src="https://guhang.fun/images/19_5_zhong.png"></image>
   <view class='page'>
     <view class="list">
-      <block wx:for="{{period_list}}" wx:for-item="period" wx:key="index">
-        <navigator hover-class="none" url="../paperlist/paperlist?issueId={{period.id}}">
-          <view class="view_tupian_wenzi" id="{{index}}">
-            <!-- 包裹两行文字 -->
-            <view class="view_wenzi2">
-              <text class="text_small">第{{period.id}}期</text>
-              <text>{{period.name}}</text>
-              <text class="text_small">时间：{{period.start_time}}至{{period.end_time}}</text>
+      <scroll-view scroll-y="true" style="height: 80%;">
+        <block wx:for="{{period_list}}" wx:for-item="period" wx:key="index">
+          <navigator hover-class="none" url="../paperlist/paperlist?issueId={{period.id}}">
+            <view class="view_tupian_wenzi" id="{{index}}">
+              <!-- 包裹两行文字 -->
+              <view class="view_wenzi2">
+                <text class="text_small">第{{period.id}}期</text>
+                <text>{{period.name}}</text>
+                <text class="text_small">时间：{{period.start_time}}至{{period.end_time}}</text>
+              </view>
+              <image class="image_2" src="../../images/finish.png" />
             </view>
-            <image class="image_2" src="../../images/finish.png" />
-          </view>
-        </navigator>
-      </block>
+          </navigator>
+        </block>
+      </scroll-view>
     </view>
   </view>
 </view>

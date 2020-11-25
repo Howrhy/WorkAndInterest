@@ -1,8 +1,8 @@
 //index.js
 //获取应用实例
 const app = getApp()
-const config = require('../../utils/config.js')
-const api = require('../../utils/api.js')
+import { maxclass, classlay as _classlay } from '../../utils/config.js';
+import { getmycollectionPaper, collectiontestPaper } from '../../utils/api.js';
 Page({
   data: {
     alltolicarr:[],
@@ -13,7 +13,7 @@ Page({
     page:0,
     nodata:false,
     state2:true,
-    multiArray: [['娱乐', '生活', '职业', '综合', '所有'], config.classlay[0].minclass],
+    multiArray: [['娱乐', '生活', '职业', '综合', '所有'], []],
     multiIndex: [0, 0],
     search: '',
     overt: true,
@@ -23,7 +23,7 @@ Page({
     let _this = this;
     this.setData({
       ['multiArray[1]']: [],
-      ['multiArray[0]']: config.maxclass
+      ['multiArray[0]']: maxclass
     })
     this.getdata(true)
   },
@@ -41,7 +41,7 @@ Page({
       overt: this.data.overt,
       search: this.data.search
     }
-    api.getmycollectionPaper(parameter).then((data) => {
+    getmycollectionPaper(parameter).then((data) => {
       if (data.data == 0){
         data.data = []
        }
@@ -68,7 +68,7 @@ Page({
       content: '您确定取消收藏这张试卷吗',
       success: (res) => {
         if (res.confirm) {
-          api.collectiontestPaper(e.target.id).then((data)=>{
+          collectiontestPaper(e.target.id).then((data)=>{
             if(data.data === 2){
               wx.showToast({
                 title: '取消收藏成功',
@@ -134,9 +134,9 @@ Page({
     if (e.detail.column === 0) {
       data.multiIndex[1] = 0;
     }
-    for (let i = 0; i < config.maxclass.length; i++) {
+    for (let i = 0; i < maxclass.length; i++) {
       if (data.multiIndex[0] === i) {
-        data.multiArray[1] = config.classlay[i].minclass;
+        data.multiArray[1] = _classlay[i].minclass;
       }
     }
     this.setData(data);

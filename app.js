@@ -6,26 +6,6 @@ String.prototype.trim = function () {
 }
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    let thar = this;
-    api.getallclassfiy().then((data) => {
-      data.data.unshift({
-        maxclass:'所有',
-        minclass:[]
-      })
-      let maxclass = [];
-      data.data.map((itme) => {
-        maxclass.push(itme.maxclass)
-      })
-      config.maxclass = maxclass
-      config.classlay = data.data
-      let setmaxclass = JSON.parse(JSON.stringify(maxclass))
-      let setclasslay = JSON.parse(JSON.stringify(data.data))
-      setmaxclass.shift()
-      setclasslay.shift()
-      config.setmaxclass = setmaxclass
-      config.setclasslay = setclasslay
-    })
     // 登录
     wx.getStorage({
       key: 'login_key',
