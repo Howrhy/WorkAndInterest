@@ -27,38 +27,11 @@
       <image class='rg' src='../../images/icon/right.png'></image>
     </navigator>
   </view>
-  <view class='item'>
-    <navigator hover-class="none" url="../mycollectionTopic/mycollectionTopic">
+  <view class='item itemsclass'>
+    <navigator hover-class="none" url="../onestop/onestop">
       <view class='iconbox'>
         <image class='icon' src='../../images/icon/mycollection_3.png'></image>
-        <text class='content'>收藏的题目</text>
-      </view>
-      <image class='rg' src='../../images/icon/right.png'></image>
-    </navigator>
-  </view>
-  <view class='item itemsclass'>
-    <navigator hover-class="none" url="../setsubject/setsubject">
-      <view class='iconbox'>
-        <image class='icon' src='../../images/icon/customtopic.png'></image>
-        <text class='content'>自定义题目</text>
-      </view>
-      <image class='rg' src='../../images/icon/right.png'></image>
-    </navigator>
-  </view>
-  <view class='item'>
-    <navigator hover-class="none" url="../mypaper/mypaper">
-      <view class='iconbox'>
-        <image class='icon' src='../../images/icon/testpaper.png'></image>
-        <text class='content'>我的试卷</text>
-      </view>
-      <image class='rg' src='../../images/icon/right.png'></image>
-    </navigator>
-  </view>
-  <view class='item'>
-    <navigator hover-class="none" url="../mycollectionPaper/mycollectionPaper">
-      <view class='iconbox'>
-        <image class='icon' src='../../images/icon/mycollection_1.png'></image>
-        <text class='content'>收藏的试卷</text>
+        <text class='content'>一站到底</text>
       </view>
       <image class='rg' src='../../images/icon/right.png'></image>
     </navigator>

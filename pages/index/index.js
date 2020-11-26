@@ -1,12 +1,12 @@
 //index.js
 //获取应用实例
 const app = getApp()
-import { getissues } from '../../utils/api.js'
+const config = require('../../utils/config.js')
+const api = require('../../utils/api.js')
 Page({
   data: {
     period_list: [],
   },
-
   //事件处理函数
   bindViewTap: function () {
     wx.navigateTo({
@@ -32,11 +32,11 @@ Page({
   },
   getdata: function (all) {
 
-    getissues()
+    api.getissues()
       .then((data) => {
         if (data.data === 0) {
           data.data = [],
-            this.setData({
+            api.show_toast({
               message: '网络出现问题，请点击搜索重试'
             })
         } else {

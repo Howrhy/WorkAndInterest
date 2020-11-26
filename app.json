@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/welcome/welcome",
     "pages/index/index",
     "pages/logs/logs",
     "pages/pixiv/pixiv",
@@ -10,7 +11,7 @@
     "pages/myTopic/myTopic",
     "pages/subjectDetails/subjectDetails",
     "pages/setting/setting",
-    "pages/mycollectionTopic/mycollectionTopic",
+    "pages/onestop/onestop",
     "pages/setpaper/setpaper",
     "pages/mypaper/mypaper",
     "pages/paperDetails/paperDetails",

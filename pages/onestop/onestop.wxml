@@ -2,11 +2,15 @@
 <view class='weather-wrapper'>
   <image class='weather-bg' src='../../images/qa_background.jpg'></image>
   <view class='page'>
-    <!-- <view class='title'>第{{index+1}}题</view> -->
-    <view class='content'>{{index+1}}.{{question.discript}}({{question.type_name}})</view>
+    <view class="row">
+      <view class='title'>时间:15s</view>
+      <view class='title'>⏰</view>
+      <view class='title'>第{{question.index+1}}题</view>
+    </view>
+    <view class='content'>{{question.choice_content}}({{question.type_name}})</view>
     <!-- 单选 -->
     <view class='choice' wx:if="{{question.question_type==0}}">
-      <radio-group bindchange="handleChange" data-question_id="{{index}}">
+      <radio-group bindchange="handleChange" data-question_id="{{question.index}}">
         <label wx:for="{{question.choice_all}}" wx:for-item="choice" wx:key="{{choice.value}}">
           <view>
             <radio checked="{{choice.checked}}" style='transform:scale(0.7)' value="{{choice.value}}" />
@@ -14,10 +18,9 @@
         </label>
       </radio-group>
     </view>
-    <view class='choice next' wx:if="{{question.question_type==0}}" value="{{answer}}">您选中的是：{{answer}}</view>
     <!-- 多选 -->
     <view class='choice' wx:if="{{question.question_type==1}}">
-      <checkbox-group bindchange="checkboxChange" data-question_id="{{index}}">
+      <checkbox-group bindchange="checkboxChange" data-question_id="{{question.index}}">
         <label wx:for="{{question.choice_all}}" wx:for-item="choice" wx:key="{{choice.value}}">
           <view>
             <checkbox checked="{{choice.checked}}" style='transform:scale(0.7)' value="{{choice.value}}" />
@@ -25,11 +28,9 @@
         </label>
       </checkbox-group>
     </view>
-    <view class='choice next' wx:if="{{question.question_type==1}}" value="{{check_answer}}">您选中的是：{{check_answer}}
-    </view>
     <!-- 判断 -->
     <view class='choice' wx:if="{{question.question_type==2}}">
-      <radio-group bindchange="judgeChange" data-question_id="{{index}}">
+      <radio-group bindchange="judgeChange" data-question_id="{{question.index}}">
         <label wx:for="{{question.choice_all}}" wx:for-item="choice" wx:key="{{choice.value}}">
           <view>
             <radio checked="{{choice.checked}}" style='transform:scale(0.7)' value="{{choice.name}}" />
@@ -37,16 +38,10 @@
         </label>
       </radio-group>
     </view>
-    <view class='choice next' wx:if="{{question.question_type==2}}" value="{{judge_answer}}">您选中的是：{{judge_answer}}
-    </view>
-    <!-- 填空 -->
-    <view class="choice_input" wx:if="{{question.question_type==3}}">
-      <input bindblur="bindKeyInput" value='{{inputValue}}' auto-focus placeholder="请输入" maxlength="20" />
-    </view>
     <view class='selfbutton'>
-      <button wx:if="{{question.begin == 0}}" class='btn1' type="default" size="mini" bindtap="click_last">上一题</button>
-      <button wx:if="{{question.end == 0}}" class='btn1' type="default" size="mini" bindtap="click_next">下一题</button>
-      <button wx:if="{{question.end == 1}}" class='btn2' size="mini" bindtap="click_submit">提交</button>
+      <button wx:if="{{question.index <total}}" class='btn1' type="default" size="mini"
+        bindtap="click_next">下一题</button>
+      <button wx:if="{{question.index==total}}" class='btn2' size="mini" bindtap="click_submit">完成</button>
     </view>
   </view>
 </view>

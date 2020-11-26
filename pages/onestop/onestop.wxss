@@ -11,19 +11,16 @@
 }
 
 .page .title {
-  margin-top: 360rpx;
-  width: 100%;
+  margin-top: 48%;
   align-items: center;
-  height: auto;
   display: flex;
-  justify-content: center;
+  margin-left: 15%;
 }
 
-
 .page .content {
-  margin-top: 300rpx;
+  margin-top: 12%;
   width: 76%;
-  height: 400rpx;
+  height: 80%;
   display: flex;
   margin-left: 12%;
   margin-right: 12%;
@@ -32,22 +29,12 @@
 }
 
 .page .choice {
-  margin-top: 40rpx;
-  width: 76%;
+  margin-top: 5%;
+  width: 80%;
   margin-left: 12%;
   margin-right: 12%;
-  height: auto;
+  height: 100%;
   display: flex;
-}
-
-.page .choice_input {
-  border-style: solid;
-  background-color: #ffffff;
-  width: 70%;
-  margin-left: 12%;
-  height: auto;
-  display: flex;
-  justify-content: center;
 }
 
 .page .next {
@@ -110,4 +97,9 @@
 
 .btn2::after {
   border-radius: 98rpx;
+}
+
+.row {
+  display: flex;
+  /* justify-content: "space-between", */
 }

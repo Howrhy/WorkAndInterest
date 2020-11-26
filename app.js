@@ -5,65 +5,85 @@ String.prototype.trim = function () {
   return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 }
 App({
-  onLaunch: function () {
-    // 登录
-    wx.getStorage({
-      key: 'login_key',
-      success: function (res) {
-        // 异步接口在success回调才能拿到返回值
-        // console.log(res.data)
-        wx.checkSession({
-          success(res) {
-            //session_key 未过期，并且在本生命周期一直有效
-          },
-          fail() {
-            // session_key 已经失效，需要重新执行登录流程
-            login() //重新登录
-            // 更新用户资料
-            wx.getStorage({
-              key: 'userInfo',
-              success: (res) => {
-                wx.getUserInfo({
-                  success: res2 => {
-                    // 可以将 res 发送给后台解码出 unionId
-                    wx.setStorageSync('userInfo', res2.userInfo)
-                    api.setinformation(res.userInfo.nickName, res.userInfo.gender).then((data) => { })
-                    // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-                    // 所以此处加入 callback 以防止这种情况
-                    if (this.userInfoReadyCallback) {
-                      this.userInfoReadyCallback(res2)
-                    }
-                  }
-                })
-              }
-            })
-          }
-        })
+  globalData: {
+    userInfo: '',
+    my_state: false
+  },
+  getUserInfo() {
+    wx.getUserInfo({
+      success: res => {
+        // 可以将 res 发送给后台解码出 unionId
+        this.globalData.userInfo = res.userInfo
+        this.globalData.my_state = true
+        wx.setStorageSync('userInfo', res.userInfo)
+        // api.setinformation(res.userInfo.nickName, res.userInfo.gender).then((data) => {
+        //   console.log(data)
+        // })
+        // // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+        // // 所以此处加入 callback 以防止这种情况
+        if (this.userInfoReadyCallback) {
+          this.userInfoReadyCallback(res)
+        }
+        wx.switchTab({
+          url: '../index/index'
+        });
       },
       fail: function () {
-        // 未登陆，调用登陆
-        login()
+        // wx.showModal({
+        //   title: '',
+        //   showCancel: false,
+        //   content: '您拒绝了信息授权，请前往右上角>关于>右上角>设置处开启',
+        //   success: function (res) {}
+        // });
       }
     })
-    function login() {
-      wx.login({
-        success: res => {
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId  
-          wx.request({
-            url: config.server + 'xcx/login.php',
-            method: 'POST',
-            data: {
-              code: res.code
-            },
-            success: function (data) {
-              wx.setStorageSync('login_key', data.data)
+    return this.globalData.my_state
+  },
+  getInfo() {
+    let that = this
+    // 查看是否授权
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              console.log(res.userInfo)
+              that.globalData.userInfo = res.userInfo
+            }
+          })
+        } else {
+          wx.openSetting({ //打开小程序设置页面，用户自己选择授权
+            success: function (res) {
+              res.authSetting = {
+                "scope.userInfo": true
+              }
             }
           })
         }
-      })
-    }
+      }
+    })
   },
-  globalData: {
-    userInfo: null
+  goto_login() {
+    wx.login({
+      success: function (res) {
+        console.log(res.code)
+        wx.request({
+          url: config.server + 'xcx/get_openId.php',
+          data: {
+            code: res.code
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            wx.setStorageSync("openId", res.data.openid);
+          }
+        })
+      }
+    })
+  },
+  onLaunch: function () {
+    this.getUserInfo()
   }
 })

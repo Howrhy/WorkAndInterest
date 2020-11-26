@@ -510,6 +510,31 @@ function setinformation(username, gender) {
   })
 }
 
+function show_toast(message, icon = 'none', duration = 2000, mask = true) {
+  wx.showToast({
+    title: message,
+    icon: icon,
+    duration: duration,
+    mask: mask
+  })
+}
+
+// 获取我的试卷
+function getQuestions(paperId) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: config.server + 'xcx/get_questions.php',
+      method: 'GET',
+      data: {
+        paperId: paperId
+      },
+      success: (data) => {
+        resolve(data)
+      }
+    })
+  })
+}
+
 module.exports = {
   getpixiv: getpixiv,
   getbilibilir: getbilibilir,
@@ -535,5 +560,7 @@ module.exports = {
   collectiontestPaper: collectiontestPaper,
   reportpaper: reportpaper,
   iscollectionandreporting: iscollectionandreporting,
-  setinformation: setinformation
+  setinformation: setinformation,
+  getQuestions: getQuestions,
+  show_toast: show_toast
 }

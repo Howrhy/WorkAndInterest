@@ -14,7 +14,7 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 100px;
+  height: 150rpx;
   background: #598ce4;
 }
 
@@ -31,17 +31,17 @@ button {
   height: 128rpx;
   /* margin: 20rpx; */
   border-radius: 50%;
-  margin-left: 16px;
+  margin-left: 30rpx;
 }
 
 .userinfo-nickname {
-  margin-left: 20px;
+  margin-left: 40rpx;
   color: white;
   align-items: center;
 }
 
 .usermotto {
-  margin-top: 0px;
+  margin-top: 0rpx;
 }
 
 .banner {
@@ -59,7 +59,7 @@ button {
   justify-content: flex-start;
   flex-direction: column;
   padding: 10rpx;
-  margin-top: 5px;
+  margin-top: 10rpx;
 }
 
 .items .item {

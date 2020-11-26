@@ -10,15 +10,15 @@ Page({
     hidden: true, //隐藏表单控件
     page: 1, //当前请求数据是第几页
     pageSize: 5, //每页数据条数
-    hasMoreData: true, //上拉时是否继续请求数据，即是否还有更多数据
+    hasMoreData: false, //上拉时是否继续请求数据，即是否还有更多数据
     ranking_list: [{
-      head_url: "../../images/b.jpg",
+      head_url: "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJnqqVBe8KCL3vhDw6hMnnZaU3jM0sXvic2lcN1kHZjvZpRGLkDeRRpuqrEoaic3KdkuoYpJcV2Biayg/132",
       user_name: "第一名",
       score: 98,
       school: "西北工业大学",
       college: "计算机学院"
     }, {
-      head_url: "../../images/b.jpg",
+      head_url: "../../images/finish.png",
       user_name: "第二名",
       score: 90,
       school: "西安交通大学",
@@ -106,7 +106,7 @@ Page({
   },
   onLoad: function () {
     this.setData({
-      datas: setclasslay
+     
     })
   },
   onShareAppMessage: function () {
@@ -115,69 +115,14 @@ Page({
       path: '/pages/index/index'
     }
   },
-  // 获取分页列表
-  getInfo: function (message) {
-    var that = this;
-    wx.showNavigationBarLoading() //在当前页面显示导航条加载动画
-    wx.showLoading({ //显示 loading 提示框
-      title: message,
-    })
-    wx.request({
-      url: 'http://localhost:88/wechat/test.php', //本地设置不校验合法域名
-      data: {
-        page: that.data.page,
-        count: that.data.pageSize
-      },
-      method: 'post',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        var contentlistTem = that.data.contentlist;
-        if (res.data.length > 0) {
-          wx.hideNavigationBarLoading() //在当前页面隐藏导航条加载动画
-          wx.hideLoading() //隐藏 loading 提示框
-          if (that.data.page == 1) {
-            contentlistTem = []
-          }
-          var contentlist = res.data;
-          if (contentlist.length < that.data.pageSize) {
-            that.setData({
-              ranking_list: contentlistTem.concat(contentlist),
-              hasMoreData: false
-            })
-          } else {
-            that.setData({
-              ranking_list: contentlistTem.concat(contentlist),
-              hasMoreData: true,
-              page: that.data.page + 1
-            })
-          }
-        }
-      },
-      fail: function (res) {
-        wx.hideNavigationBarLoading()
-        wx.hideLoading()
-        wx.showToast({
-          title: "网络连接失败",
-          icon: 'loading',
-          duration: 2000,
-          mask: true
-        })
-      },
-      complete: function (res) {
-
-      },
-    })
-  },
+ 
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-    var that = this
-    that.getInfo('正在加载数据...')
+
   },
 
   /**

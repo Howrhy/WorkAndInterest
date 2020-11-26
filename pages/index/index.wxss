@@ -92,3 +92,10 @@
   height: 100px;
   margin-left: 25%;
 }
+
+.image {
+  width: 150rpx;
+  height: 120rpx;
+  margin-left: 200rpx;
+  display: flex;
+}

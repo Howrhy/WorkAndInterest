@@ -1,5 +1,6 @@
 // pages/paperlist/paperlist.js
 const app = getApp()
+const api = require('../../utils/api.js')
 import {
   getpapers
 } from '../../utils/api.js'
@@ -10,14 +11,16 @@ Page({
   },
 
   onLoad: function (options) {
+    let that = this
     wx.getStorage({
+      //TODO
       key: 'login_key',
       success: (res) => {
-        this.getdata(options.issueId)
+        that.getdata(options.issueId)
       },
       fail(res) {
         setTimeout(() => {
-          this.getdata(options.issueId)
+          that.getdata(options.issueId)
         }, 1000)
       }
     })
@@ -28,9 +31,12 @@ Page({
       .then((data) => {
         if (data.data === 0) {
           data.data = [],
-            this.setData({
-              message: '网络出现问题，请点击搜索重试'
+            api.show_toast("网络出现问题，请重试")
+          setTimeout(function () {
+            wx.navigateBack({ //返回
+              delta: 1
             })
+          }, 2000);
         } else {
           let paper_list = data.data
           this.setData({
