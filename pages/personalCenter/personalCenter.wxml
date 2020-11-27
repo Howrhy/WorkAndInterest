@@ -1,6 +1,6 @@
 <!--index.wxml-->
 
-<view class="userinfo" bindtap='getUserInfo'>
+<view class="userinfo">
   <button wx:if="{{!userInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
   <block wx:else>
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
@@ -10,9 +10,9 @@
 
 <view class='items'>
   <view class='item'>
-    <navigator hover-class="none" url="../myProfile/myProfile">
+    <navigator hover-class="none" url="../myInfo/myInfo">
       <view class='iconbox'>
-        <image class='icon' src='../../images/icon/myProfile.png'></image>
+        <image class='icon' src='../../images/icon/myInfo.png'></image>
         <text class='content'>个人资料</text>
       </view>
       <image class='rg' src='../../images/icon/right.png'></image>

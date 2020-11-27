@@ -1,0 +1,36 @@
+<form bindsubmit='formSubmit'>
+  <i-panel title="真实姓名">
+    <i-input value="{{ userInfo.name }}" name="name" maxlength="-1" />
+  </i-panel>
+  <i-panel title="学校">
+    <i-input value="{{ userInfo.school }}" name="school" maxlength="-1" />
+  </i-panel>
+  <i-panel title="年龄">
+    <i-input value="{{ userInfo.age }}" name="age" maxlength="-1" />
+  </i-panel>
+  <i-panel title="性别">
+    <picker mode="selector" range="{{sex_range}}" index="{{index}}" bindchange="bindSexChange">
+      <view class="i-cell i-input exam-pick-input"></view>
+      <i-input value="{{sex_range[index]}}" name="sex" maxlength="-1" />
+    </picker>
+  </i-panel>
+  <i-panel title="年级">
+    <i-input value="{{ userInfo.year_No }}" name="year_No" maxlength="-1" />
+  </i-panel>
+  <i-panel title="班号">
+    <i-input value="{{ userInfo.class_No }}" name="class_No" maxlength="-1" />
+  </i-panel>
+  <i-panel title="学号">
+    <i-input value="{{ userInfo.student_No }}" name="student_No" maxlength="-1" />
+  </i-panel>
+  <i-panel title="手机">
+    <i-input value="{{ userInfo.phone }}" name="phone" maxlength="-1" />
+  </i-panel>
+  <view>
+    <button class="i-btn i-btn- i-btn-primary i-btn-square" form-type='submit'>保存</button>
+  </view>
+
+</form>
+
+<i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>
+<i-message id="message" />

@@ -14,7 +14,7 @@ App({
       success: res => {
         // 可以将 res 发送给后台解码出 unionId
         this.globalData.userInfo = res.userInfo
-        this.globalData.my_state = true
+        wx.setStorageSync('my_state', true)
         wx.setStorageSync('userInfo', res.userInfo)
         // api.setinformation(res.userInfo.nickName, res.userInfo.gender).then((data) => {
         //   console.log(data)
@@ -24,6 +24,7 @@ App({
         if (this.userInfoReadyCallback) {
           this.userInfoReadyCallback(res)
         }
+        this.goto_login()
         wx.switchTab({
           url: '../index/index'
         });
@@ -37,7 +38,6 @@ App({
         // });
       }
     })
-    return this.globalData.my_state
   },
   getInfo() {
     let that = this
@@ -67,7 +67,6 @@ App({
   goto_login() {
     wx.login({
       success: function (res) {
-        console.log(res.code)
         wx.request({
           url: config.server + 'xcx/get_openId.php',
           data: {
@@ -77,7 +76,19 @@ App({
             'content-type': 'application/json'
           },
           success: function (res) {
-            wx.setStorageSync("openId", res.data.openid);
+            //如果收到1，说明该用户已注册，在考虑服务器要不会返回该用户学校、姓名等信息用于本地存
+            //如果收到0，说明该用户未注册
+            //此处弹出注册页面，要求用户填写【学校、姓名、学号】信息，随openid一起发给服务器注册
+            if (res.data[0] == "1") {
+              wx.switchTab({
+                url: '../index/index'
+              });
+            } else {
+              wx.navigateTo({
+                url: '../register/register',
+              });
+            }
+            wx.setStorageSync("openid", res.data[1]);
           }
         })
       }

@@ -1,7 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp()
-import config from '../../utils/config.js'
 const api = require('../../utils/api.js')
 
 Page({
@@ -196,7 +195,6 @@ Page({
                 break;
               default:
                 break
-
             }
             question_list.push(data.data[i])
           }

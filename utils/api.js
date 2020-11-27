@@ -519,6 +519,43 @@ function show_toast(message, icon = 'none', duration = 2000, mask = true) {
   })
 }
 
+
+
+// 注册
+function register(user) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: config.server + 'xcx/register',
+      method: 'POST',
+      data: {
+        name: user.name,
+        school: user.school,
+        student_No: user.student_No,
+        wx_id: wx.getStorageSync("openid")
+      },
+      success: (data) => {
+        resolve(data)
+      }
+    })
+  })
+}
+
+//一站到底
+function one_fight() {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: config.server + 'xcx/one_fight',
+      method: 'GET',
+      // data: {
+      //   paperId: paperId
+      // },
+      success: (data) => {
+        resolve(data)
+      },
+    })
+  })
+}
+
 // 获取我的试卷
 function getQuestions(paperId) {
   return new Promise((resolve, reject) => {
@@ -537,6 +574,7 @@ function getQuestions(paperId) {
 
 module.exports = {
   getpixiv: getpixiv,
+  register: register,
   getbilibilir: getbilibilir,
   getbilibiliz: getbilibiliz,
   deleteTopic: deleteTopic,
@@ -562,5 +600,6 @@ module.exports = {
   iscollectionandreporting: iscollectionandreporting,
   setinformation: setinformation,
   getQuestions: getQuestions,
-  show_toast: show_toast
+  show_toast: show_toast,
+  one_fight: one_fight
 }

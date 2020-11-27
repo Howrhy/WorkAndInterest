@@ -2,6 +2,7 @@
   "pages": [
     "pages/welcome/welcome",
     "pages/index/index",
+    "pages/myInfo/myInfo",
     "pages/logs/logs",
     "pages/pixiv/pixiv",
     "pages/gendertest/gendertest",
@@ -21,7 +22,7 @@
     "pages/gendertestpaperseccuss/gendertestpaperseccuss",
     "pages/feedback/feedback",
     "pages/web/web",
-    "pages/myProfile/myProfile",
+    "pages/register/register",
     "pages/ranking/ranking",
     "pages/paperlist/paperlist"
   ],
