@@ -7,18 +7,13 @@ Page({
     userInfo: {},
     spinShow: false,
     openid: '',
-    sex: '',
     index: 0,
-    sex_range: ["男", "女"]
   },
   onLoad: function (options) {
     this.loadUserInfo()
   },
   loadUserInfo() {
     let _this = this
-    _this.setData({
-      spinShow: false
-    });
     if (wx.getStorageSync("userInfo") != undefined) {
       _this.data.userInfo = wx.getStorageSync("userInfo")
       _this.setData({
@@ -39,36 +34,48 @@ Page({
       index: e.detail.value
     })
   },
+  check_register(obj) {
+    for (var key in obj) {
+      if (obj[key] == undefined) return false;
+    }
+    return true
+  },
   formSubmit: function (e) {
     wx.showLoading({
       title: '提交中',
       mask: true
     })
-    console.log(e.detail.value)
-    api.register(e.detail.value)
-      .then(res => {
-        console.log(res)
-        if (res.data == "Ok") {
-          wx.reLaunch({
-            url: '../index/index',
-          });
-        } else {
-          wx.showModal({
-            title: '',
-            showCancel: false,
-            content: '提交失败，请联系管理员',
-            success: function (res) {}
-          });
-        }
-        wx.hideLoading()
-      }).catch(e => {
-        wx.showModal({
-          title: '',
-          showCancel: false,
-          content: '网络错误',
-          success: function (res) {}
-        });
-        wx.hideLoading()
+    if (this.check_register(e.detail.value)) {
+      api.register(e.detail.value, app.globalData.userInfo)
+        .then(res => {
+          console.log(res)
+          if (res.data == "Ok") {
+            wx.setStorageSync('isRegister', true),
+              wx.switchTab({
+                url: '../index/index'
+              });
+          } else {
+            wx.showModal({
+              title: '',
+              showCancel: false,
+              content: '提交失败，请联系管理员',
+              success: function (res) {}
+            });
+            wx.hideLoading()
+          }
+
+        })
+    } else {
+      wx.hideLoading({
+        success: (res) => {},
       })
+      wx.showModal({
+        title: '',
+        showCancel: false,
+        content: '字段不能为空 请检查注册信息',
+        success: function (res) {}
+      });
+    }
+
   }
 })

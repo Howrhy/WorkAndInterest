@@ -3,28 +3,13 @@
     "pages/welcome/welcome",
     "pages/index/index",
     "pages/myInfo/myInfo",
-    "pages/logs/logs",
-    "pages/pixiv/pixiv",
-    "pages/gendertest/gendertest",
-    "pages/gendertestseccuss/gendertestseccuss",
     "pages/personalCenter/personalCenter",
-    "pages/setsubject/setsubject",
-    "pages/myTopic/myTopic",
-    "pages/subjectDetails/subjectDetails",
-    "pages/setting/setting",
     "pages/onestop/onestop",
     "pages/setpaper/setpaper",
-    "pages/mypaper/mypaper",
-    "pages/paperDetails/paperDetails",
-    "pages/mycollectionPaper/mycollectionPaper",
-    "pages/classification/classification",
-    "pages/gendertestpaper/gendertestpaper",
-    "pages/gendertestpaperseccuss/gendertestpaperseccuss",
-    "pages/feedback/feedback",
-    "pages/web/web",
     "pages/register/register",
     "pages/ranking/ranking",
-    "pages/paperlist/paperlist"
+    "pages/paperlist/paperlist",
+    "pages/historyRecord/historyRecord"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -37,7 +22,8 @@
     "borderStyle": "white",
     "selectedColor": "#ff7473",
     "backgroundColor": "white",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "images/icon/home.png",

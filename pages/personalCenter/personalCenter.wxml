@@ -19,31 +19,21 @@
     </navigator>
   </view>
   <view class='item'>
-    <navigator hover-class="none" url="../myTopic/myTopic">
+    <navigator hover-class="none" url="../historyRecord/historyRecord">
       <view class='iconbox'>
         <image class='icon' src='../../images/icon/testbank.png'></image>
-        <text class='content'>我的题目</text>
+        <text class='content'>历史做题</text>
       </view>
       <image class='rg' src='../../images/icon/right.png'></image>
     </navigator>
   </view>
-  <view class='item itemsclass'>
+  <view class='item'>
     <navigator hover-class="none" url="../onestop/onestop">
       <view class='iconbox'>
-        <image class='icon' src='../../images/icon/mycollection_3.png'></image>
+        <image class='icon' src='../../images/icon/one_stop.png'></image>
         <text class='content'>一站到底</text>
       </view>
       <image class='rg' src='../../images/icon/right.png'></image>
     </navigator>
   </view>
-  <view class='item itemsclass'>
-    <navigator hover-class="none" url="../setpaper/setpaper">
-      <view class='iconbox'>
-        <image class='icon' src='../../images/icon/newtestpaper.png'></image>
-        <text class='content'>答题页面</text>
-      </view>
-      <image class='rg' src='../../images/icon/right.png'></image>
-    </navigator>
-  </view>
-
 </view>

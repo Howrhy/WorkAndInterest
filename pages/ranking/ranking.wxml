@@ -3,28 +3,28 @@
 <view class=" ques-section-item">
   <view class="ques-section-card">
     <view class="ques-card-head ques-card-bul"></view>
-    <view class="ques-card-title">评分排行榜</view>
+    <view class="ques-card-title">总分排行榜</view>
     <scroll-view scroll-y="true" style="height: 78%;">
       <ul class="ques-card-list" wx:for="{{ranking_list}}" wx:for-item="ranking" wx:key="index">
         <li wx:if="{{index < 3}}" class=" ques-card-list-{{index+1}}">
           <view class="ques-list-box clearfix">
             <view class="ques-list-head">
-              <image class="ques-list-image" src="{{ranking.head_url}}" />
+              <image class="ques-list-image" src="{{ranking.avatarUrl}}" />
             </view>
             <view class="ques-list-name">
-              <view class="ques-list-name-head">{{ranking.user_name}}</view>
-              <view class="ques-list-name-text">分数：{{ranking.score}}分</view>
+              <view class="ques-list-name-head">{{ranking.name}}</view>
+              <view class="ques-list-name-text">分数：{{ranking.total_grade}}分</view>
             </view><span class="ques-list-name-icon item-icon00{{index+1}}">{{index+1}}</span>
           </view>
         </li>
         <li wx:if="{{index > 2}}" class="">
           <view class=" ques-list-box clearfix">
             <view class="ques-list-head">
-              <image class="ques-list-image" src="{{ranking.head_url}}" />
+              <image class="ques-list-image" src="{{ranking.avatarUrl}}" />
             </view>
             <view class="ques-list-name">
-              <view class="ques-list-name-head">{{ranking.user_name}}</view>
-              <view class="ques-list-name-text">分数：{{ranking.score}}分</view>
+              <view class="ques-list-name-head">{{ranking.name}}</view>
+              <view class="ques-list-name-text">分数：{{ranking.total_grade}}分</view>
             </view><span class="ques-list-name-icon item-icon000">{{index+1}}</span>
           </view>
         </li>
@@ -33,12 +33,12 @@
     <view class="">
       <view class="ques-list-box clearfix-white">
         <view class="ques-list-head">
-          <image class="ques-list-image" src="../../images/alarm.png" />
+          <image class="ques-list-image" src="{{userInfo.avatarUrl}}" />
         </view>
         <view class="ques-list-name">
-          <view class="ques-list-name-head">自己</view>
-          <view class="ques-list-name-text">分数：100分</view>
-        </view><span class="ques-list-name-icon item-icon000">200</span>
+          <view class="ques-list-name-head">{{userInfo.name}}</view>
+          <view class="ques-list-name-text">分数：{{userInfo.total_grade}}分</view>
+        </view><span class="ques-list-name-icon item-icon000">{{userInfo.rankNo+1}}</span>
       </view>
     </view>
   </view>

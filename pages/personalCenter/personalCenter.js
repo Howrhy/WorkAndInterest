@@ -26,7 +26,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '趣工问答，可以自行定义选择题让您的好友答题，快来试试吧！',
+      title: '十九届五中全会知识问答开始啦，快来试试吧！',
       path: '/pages/personalCenter/personalCenter'
     }
   },

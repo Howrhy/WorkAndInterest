@@ -1,21 +1,46 @@
 /* pages/paperlist/paperlist.wxss */
 /* page设置当前窗口背景色 */
-page{
-  background-color: #F5F5F5
+page {
+  background: #ffffff;
+  /* background: -webkit-gradient(linear, left top, left bottom, from(#4f76e4), to(#24b0e8) ); */
+  color: #2c2c2c;
 }
 
 /* 定义.container设置容器样式 */
-.container{
+.container {
   padding: 10px 20px;
   align-content: center;
 }
 
 /* 定义.text-content设置文本样式 */
-.text-content{
+.text-content {
   padding: 10px;
   align-content: center;
   border-bottom: 1rpx solid #F5F5F5;
   background-color: #FFFFFF;
-  width: 80%;
+  width: 100%;
   height: auto;
+}
+
+.items {
+  display: flex;
+  width: 100%;
+  min-height: 100rpx;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 10rpx;
+  margin-top: 10rpx;
+}
+
+.items .item {
+  flex-grow: 1;
+  padding: 5rpx 20rpx;
+  height: 66rpx;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 30rpx;
+}
+
+.items .itemsclass {
+  border-bottom: 20rpx solid #eee;
+  padding: 5rpx 20rpx 10rpx 20rpx;
 }

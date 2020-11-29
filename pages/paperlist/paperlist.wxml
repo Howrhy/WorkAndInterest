@@ -1,7 +1,9 @@
-<view class='container'>
-  <block wx:for="{{paper_list}}" wx:key="index">
-    <navigator url="../setpaper/setpaper?paperId={{item.id}}">
-      <view class='text-content'>{{item.name}}</view>
-    </navigator>
-  </block>
+<view class='items'>
+  <view class='item'>
+    <block wx:for="{{paper_list}}" wx:key="index">
+      <navigator url="../setpaper/setpaper?paperId={{item.id}}&paperName={{item.name}}">
+        <view class='text-content'>{{item.name}}</view>
+      </navigator>
+    </block>
+  </view>
 </view>

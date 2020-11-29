@@ -1,66 +1,83 @@
-// pages/myInfo/myInfo.js
+const api = require("../../utils/api");
+const app = getApp()
+// pages/user/info/index.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    user_info: {},
+    openid: '',
+    index: 0
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    this.loadUserInfo()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  loadUserInfo() {
+    let _this = this
+    api.getMyInfo()
+      .then(res => {
+        if (res.data != undefined) {
+          console.log(res.data)
+          _this.data.user_info = res.data
+          _this.setData({
+            user_info: res.data
+          });
+          wx.hideLoading({
+            success: (res) => {},
+          })
+        } else {
+          wx.navigateTo({
+            url: '../register/register',
+          });
+        }
+        wx.hideLoading()
+      })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  bindSexChange: function (e) {
+    this.setData({
+      index: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  check_register(obj) {
+    for (var key in obj) {
+      if (obj[key] == undefined) return false;
+    }
+    return true
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  formSubmit: function (e) {
+    wx.showLoading({
+      title: '提交中',
+      mask: true
+    })
+    if (this.check_register(e.detail.value)) {
+      api.setMyInfo(e.detail.value, app.globalData.userInfo)
+        .then(res => {
+          if (res.data == "OK") {
+            setTimeout(function () {
+              wx.navigateBack({ //返回
+                delta: 1
+              })
+            }, 2000);
+          } else {
+            wx.showModal({
+              title: '',
+              showCancel: false,
+              content: '提交失败，请联系管理员',
+              success: function (res) {}
+            });
+          }
+          wx.hideLoading()
+        })
+    } else {
+      wx.showModal({
+        title: '',
+        showCancel: false,
+        content: '字段不能为空 请检查注册信息',
+        success: function (res) {}
+      });
+    }
 
   }
 })

@@ -1,372 +1,8 @@
 const config = require('./config.js')
-
-function getpixiv() {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: config.pixivurl,
-      dataType: 'jsonp',
-      headers: {
-        cookie: config.pixivcookie
-      },
-      success: function (data) {
-        resolve(data)
-      }
-    })
-  })
-}
-
-function getbilibilir() {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: config.bilibiliurlr,
-      dataType: 'jsonp',
-      success: function (data) {
-        resolve(data)
-      }
-    })
-  })
-}
-
-function getbilibiliz() {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: config.bilibiliurz,
-      dataType: 'jsonp',
-      success: function (data) {
-        resolve(data)
-      }
-    })
-  })
-}
-
-// 删除题目
-function deleteTopic(id) {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: config.server + 'xcx/deleteTopic.php',
-      method: 'GET',
-      data: {
-        id: id
-      },
-      success: (data) => {
-        resolve(data)
-      }
-    })
-  })
-}
-
-// 删除试卷
-function deletepaper(id) {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: config.server + 'xcx/deletepaper.php',
-      method: 'GET',
-      data: {
-        id: id
-      },
-      success: (data) => {
-        resolve(data)
-      }
-    })
-  })
-}
-
-// 获取我的题目
-function getmyTopic(parameter) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/getmyTopic.php',
-          method: 'GET',
-          data: {
-            userid: res.data,
-            page: parameter.page,
-            classify: parameter.classify,
-            keyword: parameter.search,
-            overt: parameter.overt,
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-  })
-}
-
-// 获取我的试卷
-function getmypaper(parameter) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/getmypaper.php',
-          method: 'GET',
-          data: {
-            userid: res.data,
-            page: parameter.page,
-            classify: parameter.classify,
-            keyword: parameter.search,
-            overt: parameter.overt,
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-  })
-}
-
-// 获取我的试卷下的题目
-function getpaperInTopic(options) {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: config.server + 'xcx/getpaperInTopic.php',
-      method: 'GET',
-      data: {
-        options: options
-      },
-      success: (data) => {
-        resolve(data)
-      }
-    })
-  })
-}
-
-// 获取某个分类下的题目
-function getsubject(classify) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/getsubject.php',
-          method: 'GET',
-          data: {
-            classify: classify,
-            userid: res.data
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-
-  })
-}
-
-//获取用户默认设置和信息
-function getinformation() {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/getinformation.php',
-          method: 'GET',
-          data: {
-            userid: res.data
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-  })
-}
-
-//举报题目
-function reportsubject(id) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/reportsubject.php',
-          method: 'GET',
-          data: {
-            userid: res.data,
-            id: id
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-  })
-}
-
-//举报试卷
-function reportpaper(id) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/reportpaper.php',
-          method: 'GET',
-          data: {
-            userid: res.data,
-            paperid: id
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-  })
-}
-
-//收藏题目和取消收藏
-function collectionsubject(id) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/collectionsubject.php',
-          method: 'GET',
-          data: {
-            userid: res.data,
-            id: id
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-  })
-}
-
-//收藏试卷和取消收藏
-function collectiontestPaper(id) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/collectiontestPaper.php',
-          method: 'GET',
-          data: {
-            userid: res.data,
-            id: id
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-  })
-}
-
-// 获取收藏的题目
-function getmycollectionTopic(parameter) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/getmycollectionTopic.php',
-          method: 'GET',
-          data: {
-            userid: res.data,
-            page: parameter.page,
-            classify: parameter.classify,
-            keyword: parameter.search,
-            overt: parameter.overt
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-  })
-}
-
-// 获取收藏的试卷
-function getmycollectionPaper(parameter) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/getmycollectionPaper.php',
-          method: 'GET',
-          data: {
-            userid: res.data,
-            page: parameter.page,
-            classify: parameter.classify,
-            keyword: parameter.search,
-            overt: parameter.overt
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-  })
-}
-
-//获取试卷或题目的举报和收藏状态
-function iscollectionandreporting(obj) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/iscollectionandreporting.php',
-          method: 'GET',
-          data: {
-            userid: res.data,
-            paperid: obj.paperid,
-            subjectid: obj.subjectid,
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-  })
-}
-
-// 发送用户已经做完的题目
-function sethavefinishedlist(list) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/sethavefinishedlist.php',
-          method: 'GET',
-          data: {
-            havefinishedlist: list,
-            userid: res.data
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-
-  })
-}
-
-// 获取符合搜索条件的试卷
+const app = getApp()
+// 获取所有期限的试卷
 function getissues() {
+  let wx_id = wx.getStorageSync("openid")
   return new Promise((resolve, reject) => {
     wx.getStorage({
       key: 'login_key',
@@ -374,7 +10,9 @@ function getissues() {
         wx.request({
           url: config.server + 'xcx/get_issues.php',
           method: 'GET',
-          data: {},
+          data: {
+            wx_id: wx_id,
+          },
           success: (data) => {
             resolve(data)
           }
@@ -385,7 +23,6 @@ function getissues() {
 
   })
 }
-
 // 获取这一期下的所有试卷
 function getpapers(issueId) {
   return new Promise((resolve, reject) => {
@@ -408,68 +45,6 @@ function getpapers(issueId) {
 
   })
 }
-
-
-// 获取试卷及试卷下的题目
-function getTestQuestions(paperid) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/getTestQuestions.php',
-          method: 'GET',
-          data: {
-            userid: res.data,
-            paperid: paperid
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-  })
-}
-
-// 获取分享页面的试卷及试卷下的题目
-function getshareTestQuestions(paperid) {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: config.server + 'xcx/getshareTestQuestions.php',
-      method: 'GET',
-      data: {
-        paperid: paperid
-      },
-      success: (data) => {
-        resolve(data)
-      }
-    })
-  })
-}
-
-// 获取试卷及试卷下的题目
-function sethavefinishedpaper(paperid) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/sethavefinishedpaper.php',
-          method: 'GET',
-          data: {
-            userid: res.data,
-            paperid: paperid
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-  })
-}
-
 // 获取试卷的信息
 function getonepaper(paperid) {
   return new Promise((resolve, reject) => {
@@ -485,31 +60,7 @@ function getonepaper(paperid) {
     })
   })
 }
-
-// 设置用户信息
-function setinformation(username, gender) {
-  return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        wx.request({
-          url: config.server + 'xcx/setinformationdata.php',
-          method: 'GET',
-          data: {
-            id: res.data,
-            username: username,
-            gender: gender
-          },
-          success: (data) => {
-            resolve(data)
-          }
-        })
-      },
-    })
-
-  })
-}
-
+//弹窗封装
 function show_toast(message, icon = 'none', duration = 2000, mask = true) {
   wx.showToast({
     title: message,
@@ -518,20 +69,19 @@ function show_toast(message, icon = 'none', duration = 2000, mask = true) {
     mask: mask
   })
 }
-
-
-
 // 注册
-function register(user) {
+function register(user, global) {
   return new Promise((resolve, reject) => {
+    user.wx_id = wx.getStorageSync("openid")
+    user.avatarUrl = global.avatarUrl
     wx.request({
       url: config.server + 'xcx/register',
       method: 'POST',
       data: {
-        name: user.name,
-        school: user.school,
-        student_No: user.student_No,
-        wx_id: wx.getStorageSync("openid")
+        user: JSON.stringify(user)
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
       },
       success: (data) => {
         resolve(data)
@@ -540,22 +90,55 @@ function register(user) {
   })
 }
 
+
+// 修改信息
+function setMyInfo(user, global) {
+  return new Promise((resolve, reject) => {
+    user.wx_id = wx.getStorageSync("openid")
+    user.avatarUrl = global.avatarUrl
+    wx.request({
+      url: config.server + 'xcx/set_info',
+      method: 'POST',
+      data: {
+        user: JSON.stringify(user)
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: (data) => {
+        resolve(data)
+      }
+    })
+  })
+}
+
+// 个人信息
+function getMyInfo(user) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: config.server + 'xcx/get_myInfo',
+      method: 'GET',
+      data: {
+        wx_id: wx.getStorageSync("openid")
+      },
+      success: (data) => {
+        resolve(data)
+      }
+    })
+  })
+}
 //一站到底
 function one_fight() {
   return new Promise((resolve, reject) => {
     wx.request({
       url: config.server + 'xcx/one_fight',
       method: 'GET',
-      // data: {
-      //   paperId: paperId
-      // },
       success: (data) => {
         resolve(data)
       },
     })
   })
 }
-
 // 获取我的试卷
 function getQuestions(paperId) {
   return new Promise((resolve, reject) => {
@@ -571,35 +154,118 @@ function getQuestions(paperId) {
     })
   })
 }
+// 排行榜
+function getRankingList() {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: config.server + 'xcx/get_rankingList',
+      method: 'GET',
+      data: {
+        wx_id: wx.getStorageSync("openid")
+      },
+      success: (data) => {
+        resolve(data)
+      }
+    })
+  })
+}
+// 查自己的分数和排名
+function getMyRank() {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: config.server + 'xcx/get_myRank',
+      method: 'GET',
+      data: {
+        wx_id: wx.getStorageSync("openid")
+      },
+      success: (data) => {
+        resolve(data)
+      }
+    })
+  })
+}
 
+// 提交答案
+function saveGrade(paper_id, score, paperName) {
+  let wx_id = wx.getStorageSync("openid")
+  let myDate = new Date()
+  let time = formatDate(myDate)
+  if (paper_id != 0) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: config.server + 'xcx/saveGrade1',
+        method: 'GET',
+        data: {
+          wx_id: wx_id,
+          paper_id: paper_id,
+          score: score,
+          data: time,
+          paperName: paperName
+        },
+        success: (data) => {
+          resolve(data)
+        }
+      })
+    })
+  } else {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: config.server + 'xcx/saveGrade2',
+        method: 'GET',
+        data: {
+          wx_id: wx_id,
+          score: score,
+          data: time
+        },
+        success: (data) => {
+          resolve(data)
+        }
+      })
+    })
+  }
+}
+
+// 提交答案
+function getRecord() {
+  let wx_id = wx.getStorageSync("openid")
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: config.server + 'xcx/get_record',
+      method: 'GET',
+      data: {
+        wx_id: wx_id,
+      },
+      success: (data) => {
+        resolve(data)
+      }
+    })
+  })
+}
+
+//格式化时间 不能使用 new Date()
+function formatDate(timeObj) {
+  var str = "";
+  var year = timeObj.getFullYear();
+  var month = timeObj.getMonth() + 1;
+  var date = timeObj.getDate();
+  var time = timeObj.toTimeString().split(" ")[0];
+  var rex = new RegExp(/:/g);
+  str = year + "-" + month + "-" + date + " " + time.replace(rex, ":");
+  return str;
+}
 module.exports = {
-  getpixiv: getpixiv,
   register: register,
-  getbilibilir: getbilibilir,
-  getbilibiliz: getbilibiliz,
-  deleteTopic: deleteTopic,
-  getmyTopic: getmyTopic,
-  getsubject: getsubject,
-  getinformation: getinformation,
-  reportsubject: reportsubject,
-  collectionsubject: collectionsubject,
-  getmycollectionTopic: getmycollectionTopic,
-  getmypaper: getmypaper,
-  deletepaper: deletepaper,
-  getpaperInTopic: getpaperInTopic,
-  getmycollectionPaper: getmycollectionPaper,
-  sethavefinishedlist: sethavefinishedlist,
   getissues: getissues,
   getpapers: getpapers,
-  getTestQuestions: getTestQuestions,
-  sethavefinishedpaper: sethavefinishedpaper,
   getonepaper: getonepaper,
-  getshareTestQuestions: getshareTestQuestions,
-  collectiontestPaper: collectiontestPaper,
-  reportpaper: reportpaper,
-  iscollectionandreporting: iscollectionandreporting,
-  setinformation: setinformation,
   getQuestions: getQuestions,
   show_toast: show_toast,
-  one_fight: one_fight
+  one_fight: one_fight,
+  getMyInfo: getMyInfo,
+  formatDate: formatDate,
+  saveGrade: saveGrade,
+  getRankingList: getRankingList,
+  getMyRank: getMyRank,
+  getRecord: getRecord,
+  setMyInfo: setMyInfo
 }

@@ -5,22 +5,27 @@ const api = require('../../utils/api.js')
 Page({
   user_answer: {},
   checked: 0,
+  score: 0,
+  time: '5',
   data: {
+    timer: '', //定时器任务
     inputValue: null,
     question_list: [],
     index: 0
   },
   click_next(e) {
     if (this.checked == 0) {
-      let message = "选项不能为空"
+      let message = "答案不能为空"
       api.show_toast(message)
       return
     } else {
+      this.calculate(this.user_answer)
       let index = this.data.index
       index = index + 1
       this.checked = 0
       this.setData({
         answer: '',
+        inputValue: '',
         check_answer: '',
         index: index,
         question: this.data.question_list[index]
@@ -39,29 +44,72 @@ Page({
     }
   },
   click_submit(e) {
-    api.show_toast("恭喜成功", 'success')
-    setTimeout(function () {
-      wx.navigateBack({ //返回
-        delta: 1
-      })
-    }, 2000);
+    if (this.checked == 0) {
+      let message = "答案不能为空"
+      api.show_toast(message)
+      return
+    } else {
+      let question_list = this.data.question_list
+      let i = this.data.index
+      if (question_list[i].answer == this.user_answer[i]) {
+        this.score = this.score + 10
+      }
+      wx.showModal({
+        title: '',
+        showCancel: false,
+        content: "分数：" + this.score,
+        success: function (res) {}
+      });
+      api.saveGrade(0, this.score)
+        .then((res) => {
+          if (res.data === 'Ok') {
+            setTimeout(function () {
+              wx.navigateBack({ //返回
+                delta: 1
+              })
+            }, 2000);
+          } else {
+            setTimeout(function () {
+              wx.navigateBack({ //返回
+                delta: 1
+              })
+            }, 2000);
+          }
+        })
+    }
   },
   calculate(dict) {
     let question_list = this.data.question_list
-    let score = 0
-    for (let i = 0; i < question_list.length; i++) {
-      if (question_list[i].answer == dict[i]) {
-        score = score + 20
-      }
+    let i = this.data.index
+    console.log(question_list[i].answer)
+    console.log(dict[i])
+    if (question_list[i].answer == dict[i]) {
+      this.score = this.score + 10
+    } else {
+      wx.showModal({
+        title: '',
+        showCancel: false,
+        content: "分数：" + this.score,
+        success: function (res) {}
+      });
+      api.saveGrade(0, this.score)
+        .then((res) => {
+          if (res.data === 'Ok') {
+            setTimeout(function () {
+              wx.navigateBack({ //返回
+                delta: 1
+              })
+            }, 2000);
+          } else {
+            setTimeout(function () {
+              wx.navigateBack({ //返回
+                delta: 1
+              })
+            }, 2000);
+          }
+        })
     }
-    api.show_toast("分数：" + score, 'success')
-    setTimeout(function () {
-      wx.navigateBack({ //返回
-        delta: 1
-      })
-    }, 2000);
-    // this.update();
-    //this.onLoad() //再次加载，实现返回上一页页面刷新
+    return true
   },
   handleChange(e) {
     let key = e.currentTarget.dataset.question_id
@@ -74,7 +122,7 @@ Page({
   },
   checkboxChange(e) {
     let key = e.currentTarget.dataset.question_id
-    let value = e.detail.value
+    let value = e.detail.value.sort().toString().replace(/,/g, "")
     if (value.length > 0) {
       this.checked = 1
     } else {
@@ -87,7 +135,6 @@ Page({
     })
   },
   judgeChange(e) {
-    console.log(e)
     let key = e.currentTarget.dataset.question_id
     let value = "0"
     if (e.detail.value == "正确") {
@@ -100,7 +147,35 @@ Page({
     })
   },
   onLoad: function (options) {
-    this.getOneFight()
+    let that = this
+    that.getOneFight()
+    that.data.timer = setInterval(function () {
+      that.setData({
+        time: that.time - 1,
+      })
+      that.time = that.time - 1
+      if (that.time <= 0) {
+        clearInterval(that.data.timer);
+        wx.showModal({
+          title: '',
+          showCancel: false,
+          content: "分数：" + that.score,
+          success: function (res) {}
+        });
+        api.saveGrade(0, that.score)
+          .then((data) => {
+            setTimeout(function () {
+              wx.navigateBack({ //返回
+                delta: 1
+              })
+            }, 2000);
+          })
+      }
+    }, 1000)
+  },
+  onUnload: function () {
+    let e = this;
+    clearInterval(e.data.timer);
   },
   getOneFight() {
     let _this = this
@@ -110,7 +185,6 @@ Page({
     })
     api.one_fight()
       .then(res => {
-        console.log(res.data)
         if (res.data.length == 0) {
           wx.showModal({
             title: '',
@@ -180,7 +254,7 @@ Page({
                 choice_all = []
                 _this.data.data[i].type_name = "判断"
                 if (_this.data.data[i].answer) {
-                  _this.data.data[i].answer = ''
+                  _this.data.data[i].answer = '1'
                 } else {
                   _this.data.data[i].answer = '0'
                 }
@@ -204,12 +278,18 @@ Page({
           _this.data.question_list = question_list
           _this.setData({
             index: _this.data.index,
-            question: question_list[_this.data.index]
+            question: _this.data.question_list[_this.data.index]
           })
         }
 
       }).catch(e => {
         console.log(e)
       })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '十九届五中全会知识问答开始啦，快来试试吧！',
+      path: '/pages/onestop/onestop'
+    }
   },
 })

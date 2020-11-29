@@ -16,26 +16,18 @@ App({
         this.globalData.userInfo = res.userInfo
         wx.setStorageSync('my_state', true)
         wx.setStorageSync('userInfo', res.userInfo)
-        // api.setinformation(res.userInfo.nickName, res.userInfo.gender).then((data) => {
-        //   console.log(data)
-        // })
-        // // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-        // // 所以此处加入 callback 以防止这种情况
         if (this.userInfoReadyCallback) {
           this.userInfoReadyCallback(res)
         }
         this.goto_login()
-        wx.switchTab({
-          url: '../index/index'
-        });
       },
       fail: function () {
-        // wx.showModal({
-        //   title: '',
-        //   showCancel: false,
-        //   content: '您拒绝了信息授权，请前往右上角>关于>右上角>设置处开启',
-        //   success: function (res) {}
-        // });
+        wx.showModal({
+          title: '',
+          showCancel: false,
+          content: '您拒绝了信息授权，请前往右上角>关于>右上角>设置处开启',
+          success: function (res) {}
+        });
       }
     })
   },
@@ -48,7 +40,6 @@ App({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success: function (res) {
-              console.log(res.userInfo)
               that.globalData.userInfo = res.userInfo
             }
           })
@@ -81,11 +72,11 @@ App({
             //此处弹出注册页面，要求用户填写【学校、姓名、学号】信息，随openid一起发给服务器注册
             if (res.data[0] == "1") {
               wx.switchTab({
-                url: '../index/index'
+                url: '../../pages/index/index'
               });
             } else {
               wx.navigateTo({
-                url: '../register/register',
+                url: '../../pages/register/register',
               });
             }
             wx.setStorageSync("openid", res.data[1]);
@@ -95,6 +86,6 @@ App({
     })
   },
   onLaunch: function () {
-    this.getUserInfo()
+    //this.getUserInfo()
   }
 })

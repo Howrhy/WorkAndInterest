@@ -9,7 +9,8 @@ Page({
   data: {
     inputValue: null,
     question_list: [],
-    index: 0
+    index: 0,
+    paperId: ""
   },
   click_next(e) {
     if (this.checked == 0) {
@@ -48,7 +49,13 @@ Page({
   },
   click_submit(e) {
     //console.log(this.user_answer)
-    this.calculate(this.user_answer)
+    if (this.checked == 0) {
+      let message = "选项不能为空"
+      api.show_toast(message)
+      return
+    } else {
+      this.calculate(this.user_answer)
+    }
   },
   calculate(dict) {
     let question_list = this.data.question_list
@@ -59,11 +66,22 @@ Page({
       }
     }
     api.show_toast("分数：" + score, 'success')
-    setTimeout(function () {
-      wx.navigateBack({ //返回
-        delta: 1
+    api.saveGrade(this.data.paperId, score, this.data.paperName)
+      .then((res) => {
+        if (res.data === 'Ok') {
+          setTimeout(function () {
+            wx.navigateBack({ //返回
+              delta: 1
+            })
+          }, 2000);
+        } else {
+          setTimeout(function () {
+            wx.navigateBack({ //返回
+              delta: 1
+            })
+          }, 2000);
+        }
       })
-    }, 2000);
     // this.update();
     //this.onLoad() //再次加载，实现返回上一页页面刷新
   },
@@ -78,7 +96,7 @@ Page({
   },
   checkboxChange(e) {
     let key = e.currentTarget.dataset.question_id
-    let value = e.detail.value.sort().toString()
+    let value = e.detail.value.sort().toString().replace(/,/g, "")
     if (value.length > 0) {
       this.checked = 1
     } else {
@@ -113,6 +131,10 @@ Page({
     })
   },
   getquestions: function (paperId) {
+    wx.showLoading({
+      title: '拉取题库中',
+      mask: true
+    })
     api.getQuestions(paperId)
       .then((data) => {
         if (data.data.length == 0) {
@@ -123,6 +145,7 @@ Page({
             })
           }, 2000);
         } else {
+          wx.hideLoading()
           data.data = data.data
           let question_list = []
           for (let i = 0; i < data.data.length; i++) {
@@ -178,7 +201,7 @@ Page({
                 choice_all = []
                 data.data[i].type_name = "判断"
                 if (data.data[i].answer) {
-                  data.data[i].answer = ''
+                  data.data[i].answer = '1'
                 } else {
                   data.data[i].answer = '0'
                 }
@@ -209,5 +232,13 @@ Page({
   },
   onLoad: function (options) {
     this.getquestions(options.paperId)
+    this.data.paperId = options.paperId
+    this.data.paperName = options.paperName
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '十九届五中全会知识问答开始啦，快来试试吧！',
+      path: '/pages/setpaper/setpaper'
+    }
   },
 })

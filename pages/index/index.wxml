@@ -2,23 +2,25 @@
 <view class='weather-wrapper'>
   <image class='weather-bg' src='https://guhang.fun/images/qa_back.jpg'></image>
   <image class='z_title' src="https://guhang.fun/images/19_5_zhong.png"></image>
-  <view class='page'>
-    <view class="list">
-      <scroll-view scroll-y="true" style="height: 80%;">
-        <block wx:for="{{period_list}}" wx:for-item="period" wx:key="index">
-          <navigator hover-class="none" url="../paperlist/paperlist?issueId={{period.id}}">
-            <view class="view_tupian_wenzi" id="{{index}}">
-              <!-- 包裹两行文字 -->
-              <view class="view_wenzi2">
-                <text class="text_small">第{{period.id}}期</text>
-                <text>{{period.name}}</text>
-                <text class="text_small">时间：{{period.start_time}}至{{period.end_time}}</text>
-              </view>
-              <image class="image_2" src="../../images/finish.png" />
-            </view>
-          </navigator>
-        </block>
-      </scroll-view>
-    </view>
-  </view>
+
+  <scroll-view scroll-y="true" style="height: 83%;">
+    <block wx:for="{{period_list}}" wx:for-item="period" wx:key="index">
+      <navigator hover-class="none" url="../paperlist/paperlist?issueId={{period.id}}">
+        <view class="view_tupian_wenzi" id="{{index}}">
+          <!-- 包裹两行文字 -->
+          <view class="view_wenzi2">
+            <text class="text_small">第{{period.id}}期</text>
+            <text>{{period.name}}</text>
+            <text class="text_small">时间：{{period.start_time}}至{{period.end_time}}</text>
+          </view>
+          <image wx:if="{{util.inof(finished_issues,period.id)>-1}}" class="image_2" src="../../images/finish.png" />
+        </view>
+      </navigator>
+    </block>
+  </scroll-view>
+
 </view>
+<wxs module="util">
+  var inof = function (a, b) { return a.indexOf(b) }
+  module.exports.inof = inof;
+</wxs>

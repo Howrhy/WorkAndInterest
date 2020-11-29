@@ -16,7 +16,7 @@ Page({
     // }, 1000)
   },
   getUserInfo: function (e) {
-    if (wx.getStorageSync('my_state')) {
+    if (wx.getStorageSync('my_state') && wx.getStorageSync('isRegister')) {
       wx.switchTab({
         url: '../index/index'
       });

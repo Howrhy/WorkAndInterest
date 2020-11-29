@@ -2,7 +2,9 @@
 <view class='weather-wrapper'>
   <image class='weather-bg' src='../../images/qa_background.jpg'></image>
   <view class='page'>
-    <!-- <view class='title'>第{{index+1}}题</view> -->
+    <view class="progress-box">
+      <progress style="color: #FFFFFF;" percent="{{(index+1)*20}}" show-info stroke-width="3" />
+    </view>
     <view class='content'>{{index+1}}.{{question.discript}}({{question.type_name}})</view>
     <!-- 单选 -->
     <view class='choice' wx:if="{{question.question_type==0}}">
