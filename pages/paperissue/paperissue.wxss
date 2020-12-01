@@ -6,7 +6,7 @@
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
-  font-family: ‘Franklin Gothic Medium’, ‘Arial Narrow’, Arial, sans-serif;
+  font-family: ‘Trebuchet MS’, ‘Lucida Sans Unicode’, ‘Lucida Grande’, ‘Lucida Sans’, Arial, sans-serif;
 }
 
 .times {
@@ -38,7 +38,7 @@
 }
 
 .view_tupian_wenzi {
-  height: auto;
+  height: 120rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -68,42 +68,30 @@
   height: 100rpx;
 }
 
-
-
 /* 包裹两行文字 */
 
 .view_wenzi2 {
   width: 100%;
-  margin-left: 60rpx;
+  margin-left: 25rpx;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
-  font-weight: 600;
-  color: black;
-  font-size: 40rpx;
-  font-family: Gothic Medium’, ‘Arial Narrow’, Arial, sans-serif;
 }
+
+/* 小字 */
 
 .text_small {
   position: relative;
   display: flex;
+  font-size: 30rpx;
   word-break: break-all;
-  margin-top: 10rpx;
-
+  color: #7a7878;
+  margin-top: 10rpx
 }
 
 .z_title {
-  width: 480rpx;
-  height: 240rpx;
-  margin-left: 150rpx;
-}
-
-.b_title {
-  width: 200rpx;
-  height: 200rpx;
-  margin-left: 280rpx;
-  margin-top: 20rpx;
+  width: 200px;
+  height: 100px;
+  margin-left: 25%;
 }
 
 .image {

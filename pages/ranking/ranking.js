@@ -35,7 +35,6 @@ Page({
           ranking_list: ranking_list
         })
         api.getMyRank().then((data) => {
-          console.log(data)
           if (data.data === undefined) {
             api.show_toast('网络出现问题，请点击搜索重试')
           } else {
@@ -61,5 +60,9 @@ Page({
       })
     }
   },
-
+  onShow: function () {
+    const pages = getCurrentPages()
+    const perpage = pages[pages.length - 1]
+    perpage.onLoad()
+  },
 })

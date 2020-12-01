@@ -48,7 +48,6 @@ Page({
     if (this.check_register(e.detail.value)) {
       api.register(e.detail.value, app.globalData.userInfo)
         .then(res => {
-          console.log(res)
           if (res.data == "Ok") {
             wx.setStorageSync('isRegister', true),
               wx.switchTab({

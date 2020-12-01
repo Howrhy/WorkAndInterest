@@ -6,7 +6,7 @@ Page({
   user_answer: {},
   checked: 0,
   score: 0,
-  time: '5',
+  time: '120',
   data: {
     timer: '', //定时器任务
     inputValue: null,
@@ -81,8 +81,6 @@ Page({
   calculate(dict) {
     let question_list = this.data.question_list
     let i = this.data.index
-    console.log(question_list[i].answer)
-    console.log(dict[i])
     if (question_list[i].answer == dict[i]) {
       this.score = this.score + 10
     } else {

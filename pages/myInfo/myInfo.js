@@ -19,7 +19,6 @@ Page({
     api.getMyInfo()
       .then(res => {
         if (res.data != undefined) {
-          console.log(res.data)
           _this.data.user_info = res.data
           _this.setData({
             user_info: res.data
@@ -59,7 +58,7 @@ Page({
               wx.navigateBack({ //返回
                 delta: 1
               })
-            }, 2000);
+            }, 1000);
           } else {
             wx.showModal({
               title: '',

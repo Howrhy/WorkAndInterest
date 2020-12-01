@@ -1,24 +1,18 @@
 <form bindsubmit='formSubmit'>
   <i-panel title="真实姓名">
-    <i-input value="{{ user_info.name }}" name="name" maxlength="-1" />
+    <i-input value="{{ user_info.name }}" name="name" maxlength="10" />
   </i-panel>
   <i-panel title="学校">
-    <i-input value="{{ user_info.school }}" name="school" maxlength="-1" />
-  </i-panel>
-  <i-panel title="年龄">
-    <i-input value="{{ user_info.age }}" name="age" maxlength="-1" />
+    <i-input value="{{ user_info.school }}" name="school" maxlength="10" />
   </i-panel>
   <i-panel title="年级">
-    <i-input value="{{ user_info.year_No }}" name="year_No" maxlength="-1" />
+    <i-input value="{{ user_info.year_No }}" name="year_No" maxlength="10" />
   </i-panel>
   <i-panel title="班号">
-    <i-input value="{{ user_info.class_No }}" name="class_No" maxlength="-1" />
+    <i-input value="{{ user_info.class_No }}" name="class_No" maxlength="10" />
   </i-panel>
   <i-panel title="学号">
-    <i-input value="{{ user_info.student_No }}" name="student_No" maxlength="-1" />
-  </i-panel>
-  <i-panel title="手机">
-    <i-input value="{{ user_info.phone }}" name="phone" maxlength="-1" />
+    <i-input value="{{ user_info.student_No }}" name="student_No" maxlength="10" />
   </i-panel>
   <view>
     <button class="i-btn i-btn- i-btn-primary i-btn-square" form-type='submit'>保存</button>

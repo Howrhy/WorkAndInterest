@@ -14,9 +14,8 @@ Page({
   },
   click_next(e) {
     if (this.checked == 0) {
-      let message = "选项不能为空"
+      let message = "答案不能为空"
       api.show_toast(message)
-      return
     } else {
       this.data.index++
       this.checked = 0
@@ -28,7 +27,6 @@ Page({
         question: this.data.question_list[this.data.index]
       })
     }
-
   },
   click_last(e) {
     if (this.checked == 0) {
@@ -48,7 +46,6 @@ Page({
     }
   },
   click_submit(e) {
-    //console.log(this.user_answer)
     if (this.checked == 0) {
       let message = "选项不能为空"
       api.show_toast(message)

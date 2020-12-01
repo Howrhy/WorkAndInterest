@@ -43,7 +43,7 @@
     </view>
     <!-- 填空 -->
     <view class="choice_input" wx:if="{{question.question_type==3}}">
-      <input bindblur="bindKeyInput" value='{{inputValue}}' auto-focus placeholder="请输入" maxlength="20" />
+      <input bindinput="bindKeyInput" value='{{inputValue}}' auto-focus placeholder="请输入" maxlength="10" />
     </view>
     <view class='selfbutton'>
       <button wx:if="{{question.begin == 0}}" class='btn1' type="default" size="mini" bindtap="click_last">上一题</button>
