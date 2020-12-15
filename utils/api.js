@@ -155,13 +155,13 @@ function getQuestions(paperId) {
   })
 }
 // 排行榜
-function getRankingList() {
+function getRankingList(pageNum) {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: config.server + 'xcx/get_rankingList',
+      url: config.server + 'xcx/get_rankingList?',
       method: 'GET',
       data: {
-        wx_id: wx.getStorageSync("openid")
+        pageNum: pageNum
       },
       success: (data) => {
         resolve(data)
@@ -187,6 +187,9 @@ function getMyRank() {
 
 // 提交答案
 function saveGrade(paper_id, score, paperName) {
+  if (score == 0 || score > 100) {
+    return 
+  }
   let wx_id = wx.getStorageSync("openid")
   let myDate = new Date()
   let time = formatDate(myDate)
@@ -225,7 +228,7 @@ function saveGrade(paper_id, score, paperName) {
   }
 }
 
-// 提交答案
+// 答题记录
 function getRecord() {
   let wx_id = wx.getStorageSync("openid")
   return new Promise((resolve, reject) => {
@@ -242,6 +245,22 @@ function getRecord() {
   })
 }
 
+// 一站到底记录
+function getFightRecord() {
+  let wx_id = wx.getStorageSync("openid")
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: config.server + 'xcx/get_fight',
+      method: 'GET',
+      data: {
+        wx_id: wx_id,
+      },
+      success: (data) => {
+        resolve(data)
+      }
+    })
+  })
+}
 //格式化时间 不能使用 new Date()
 function formatDate(timeObj) {
   var str = "";
@@ -267,5 +286,6 @@ module.exports = {
   getRankingList: getRankingList,
   getMyRank: getMyRank,
   getRecord: getRecord,
-  setMyInfo: setMyInfo
+  setMyInfo: setMyInfo,
+  getFightRecord: getFightRecord
 }

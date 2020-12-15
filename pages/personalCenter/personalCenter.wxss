@@ -97,3 +97,14 @@ button {
   width: 50rpx;
   height: 50rpx;
 }
+
+.tuan1 {
+  width: 300rpx;
+  height: 400rpx;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 20rpx;
+  float: right;
+}

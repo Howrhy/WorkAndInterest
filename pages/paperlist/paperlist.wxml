@@ -7,3 +7,6 @@
     </block>
   </view>
 </view>
+<view>
+  <image class="tuan2" src="../../images/tuan2.jpg" />
+</view>

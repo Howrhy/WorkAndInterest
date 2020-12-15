@@ -4,13 +4,13 @@ Page({
   data: {
     listData: {}
   },
-  getHistoryRecord() {
+  getFightRecord() {
     let _this = this
     wx.showLoading({
       title: '获取记录中',
       mask: true
     })
-    api.getRecord()
+    api.getFightRecord()
       .then(res => {
         wx.hideLoading()
         _this.data.listData = res.data
@@ -21,7 +21,7 @@ Page({
   },
 
   onLoad: function () {
-    this.getHistoryRecord()
+    this.getFightRecord()
   },
   onShareAppMessage: function () {
     return {

@@ -2,14 +2,14 @@
 //获取应用实例
 const app = getApp()
 import api from '../../utils/api.js'
+import config from '../../utils/config.js'
 Page({
   data: {
-    hidden: true, //隐藏表单控件
-    page: 1, //当前请求数据是第几页
-    pageSize: 5, //每页数据条数
+    pageNum: 1, //当前请求数据是第几页
     hasMoreData: false, //上拉时是否继续请求数据，即是否还有更多数据
     ranking_list: [],
     userInfo: "",
+    scrolly: true
   },
 
   onShareAppMessage: function () {
@@ -19,27 +19,27 @@ Page({
     }
   },
 
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onLoad: function (options) {
+  onShow: function (options) {
+    var that = this
+    that.data.scrolly = true
+    that.data.pageNum = 1
     // 页面初始化 options为页面跳转所带来的参数
-    api.getRankingList().then((data) => {
+    api.getRankingList(that.data.pageNum).then((data) => {
       if (data.lenth === 0) {
-        api.show_toast('网络出现问题，请点击搜索重试')
+        api.show_toast('网络出现问题，请重试')
       } else {
         let ranking_list = data.data
-        this.data.ranking_list = ranking_list
-        this.setData({
+        that.data.ranking_list = ranking_list
+        that.setData({
           ranking_list: ranking_list
         })
         api.getMyRank().then((data) => {
-          if (data.data === undefined) {
-            api.show_toast('网络出现问题，请点击搜索重试')
+          if (data.data === "error") {
+            api.show_toast('请完成注册信息填写')
+            app.getUserInfo()
           } else {
-            this.data.userInfo = data.data
-            this.setData({
+            that.data.userInfo = data.data
+            that.setData({
               userInfo: data.data
             })
           }
@@ -51,18 +51,61 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-    if (this.data.hasMoreData) {
-      this.getInfo('加载更多数据')
-    } else {
-      wx.showToast({
-        title: '没有更多数据',
-      })
+
+  getMore: function () {
+    var that = this;
+    if (that.data.scrolly == false) {
+      return
     }
-  },
-  onShow: function () {
-    const pages = getCurrentPages()
-    const perpage = pages[pages.length - 1]
-    perpage.onLoad()
-  },
+    var pageNum = that.data.pageNum;
+    that.data.pageNum = pageNum + 1
+    wx.showLoading({
+      title: ' 加载中',
+      make: true
+    })
+    wx.request({
+      url: config.server + 'xcx/get_rankingList?',
+      method: 'GET',
+      data: {
+        pageNum: pageNum
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        var res = res.data;
+        console.log(res.length)
+        if (res.length != 0) {
+          that.data.ranking_list = that.data.ranking_list.concat(res)
+          that.setData({
+            ranking_list: that.data.ranking_list
+          })
+        } else {
+          wx.showModal({
+            title: '',
+            showCancel: false,
+            content: '没有更多啦',
+            success: function (res) {}
+          });
+          that.data.scrolly = false
+        }
+      },
+      fail: function () {
+        wx.showToast({
+          title: '服务器异常',
+          duration: 1500
+        })
+      },
+      complete: function () {
+        if (pageNum >= 1) {
+          wx.hideLoading()
+        }
+      }
+    })
+  }
+  // onShow: function () {
+  //   const pages = getCurrentPages()
+  //   const perpage = pages[pages.length - 1]
+  //   perpage.onLoad()
+  // },
 })

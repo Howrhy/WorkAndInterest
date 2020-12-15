@@ -8,5 +8,6 @@
         <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 开始挑战 </button>
       </view>
     </view>
+    <view style="display: flex; justify-content: center; position: relative; align-items: center;">如果点击无效，请将小程序删除后重新进入</view>
   </view>
 </view>

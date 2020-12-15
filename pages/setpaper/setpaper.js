@@ -59,7 +59,7 @@ Page({
     let score = 0
     for (let i = 0; i < question_list.length; i++) {
       if (question_list[i].answer == dict[i]) {
-        score = score + 20
+        score = score + 10
       }
     }
     api.show_toast("分数：" + score, 'success')

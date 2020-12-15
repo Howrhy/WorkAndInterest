@@ -35,7 +35,7 @@ Page({
       .then((data) => {
         if (data.data === 0) {
           data.data = [],
-            api.show_toast('网络出现问题，请点击搜索重试')
+            api.show_toast('网络出现问题，请重试')
         } else {
           let period_list = data.data.data
           this.data.period_list = period_list

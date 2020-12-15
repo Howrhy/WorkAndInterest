@@ -13,7 +13,7 @@
     <navigator hover-class="none" url="../myInfo/myInfo">
       <view class='iconbox'>
         <image class='icon' src='../../images/icon/myInfo.png'></image>
-        <text class='content'>个人资料</text>
+        <text class='content'>个人信息修改</text>
       </view>
       <image class='rg' src='../../images/icon/right.png'></image>
     </navigator>
@@ -22,18 +22,22 @@
     <navigator hover-class="none" url="../historyRecord/historyRecord">
       <view class='iconbox'>
         <image class='icon' src='../../images/icon/testbank.png'></image>
-        <text class='content'>历史做题</text>
+        <text class='content'>答题历史记录</text>
       </view>
       <image class='rg' src='../../images/icon/right.png'></image>
     </navigator>
   </view>
   <view class='item'>
-    <navigator hover-class="none" url="../onestop/onestop">
+    <navigator hover-class="none" url="../fightRecord/fightRecord">
       <view class='iconbox'>
         <image class='icon' src='../../images/icon/one_stop.png'></image>
-        <text class='content'>一站到底</text>
+        <text class='content'>一站到底得分</text>
       </view>
       <image class='rg' src='../../images/icon/right.png'></image>
     </navigator>
   </view>
+</view>
+
+<view>
+  <image class="tuan1" src="../../images/tuan1.jpg" />
 </view>

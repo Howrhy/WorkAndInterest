@@ -61,6 +61,9 @@ Page({
               success: function (res) {}
             });
             wx.hideLoading()
+            wx.navigateTo({
+              url: '../../pages/welcome/welcome',
+            });
           }
 
         })

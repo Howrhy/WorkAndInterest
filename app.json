@@ -10,7 +10,8 @@
     "pages/ranking/ranking",
     "pages/paperlist/paperlist",
     "pages/historyRecord/historyRecord",
-    "pages/paperissue/paperissue"
+    "pages/paperissue/paperissue",
+    "pages/fightRecord/fightRecord"
   ],
   "window": {
     "backgroundTextStyle": "light",

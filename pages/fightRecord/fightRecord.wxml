@@ -1,0 +1,21 @@
+<!--pages/historyRecord/historyRecord.wxml-->
+<view class="table">
+  <view class="tr bg-w">
+    <view class="th">试卷名称</view>
+    <view class="th">得分</view>
+    <view class="th ">时间</view>
+  </view>
+  <block wx:for="{{listData}}" wx:key="{{index}}">
+    <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+      <view class="td">一站到底</view>
+      <view class="td">{{item.score}}</view>
+      <view class="td">{{item.data}}</view>
+    </view>
+    <view class="tr" wx:else>
+      <view class="td">一站到底</view>
+      <view class="td">{{item.score}}</view>
+      <view class="td">{{item.data}}</view>
+    </view>
+  </block>
+  <view>一站到底得分为答对的题数的平方。如：答对2题得4分，答对10题得100分。</view>
+</view>

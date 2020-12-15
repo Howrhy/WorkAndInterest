@@ -44,3 +44,12 @@ page {
   border-bottom: 20rpx solid #eee;
   padding: 5rpx 20rpx 10rpx 20rpx;
 }
+
+.tuan2 {
+  width: 280rpx;
+  height: 400rpx;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  margin: 20rpx;
+}

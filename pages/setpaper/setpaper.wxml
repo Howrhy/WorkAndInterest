@@ -3,7 +3,7 @@
   <image class='weather-bg' src='../../images/qa_background.jpg'></image>
   <view class='page'>
     <view class="progress-box">
-      <progress style="color: #FFFFFF;" percent="{{(index+1)*20}}" show-info stroke-width="3" />
+      <progress style="color: #FFFFFF;" percent="{{(index+1)*10}}" show-info stroke-width="3" />
     </view>
     <view class='content'>{{index+1}}.{{question.discript}}({{question.type_name}})</view>
     <!-- 单选 -->

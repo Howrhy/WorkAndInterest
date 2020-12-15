@@ -25,7 +25,7 @@ App({
         wx.showModal({
           title: '',
           showCancel: false,
-          content: '您拒绝了信息授权，请前往右上角>关于>右上角>设置处开启',
+          content: '请先点击开始挑战进行信息授权',
           success: function (res) {}
         });
       }
@@ -70,6 +70,7 @@ App({
             //如果收到1，说明该用户已注册，在考虑服务器要不会返回该用户学校、姓名等信息用于本地存
             //如果收到0，说明该用户未注册
             //此处弹出注册页面，要求用户填写【学校、姓名、学号】信息，随openid一起发给服务器注册
+            wx.setStorageSync("openid", res.data[1]);
             if (res.data[0] == "1") {
               wx.switchTab({
                 url: '../../pages/index/index'
@@ -79,7 +80,14 @@ App({
                 url: '../../pages/register/register',
               });
             }
-            wx.setStorageSync("openid", res.data[1]);
+          },
+          fail: function (res) {
+            wx.showModal({
+              title: '',
+              showCancel: false,
+              content: '服务器未响应，请联系管理员',
+              success: function (res) {}
+            });
           }
         })
       }

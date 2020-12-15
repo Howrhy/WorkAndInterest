@@ -6,7 +6,7 @@ Page({
   user_answer: {},
   checked: 0,
   score: 0,
-  time: '120',
+  time: '200',
   data: {
     timer: '', //定时器任务
     inputValue: null,
@@ -52,23 +52,28 @@ Page({
       let question_list = this.data.question_list
       let i = this.data.index
       if (question_list[i].answer == this.user_answer[i]) {
-        this.score = this.score + 10
+        this.score = this.score + 1
       }
-      wx.showModal({
-        title: '',
-        showCancel: false,
-        content: "分数：" + this.score,
-        success: function (res) {}
-      });
-      api.saveGrade(0, this.score)
+      setTimeout(function () {
+        wx.navigateBack({ //返回
+          delta: 1
+        })
+      }, 1000);
+      api.saveGrade(0, this.score * this.score)
         .then((res) => {
           if (res.data === 'Ok') {
-            setTimeout(function () {
-              wx.navigateBack({ //返回
-                delta: 1
-              })
-            }, 2000);
+            wx.showModal({
+              title: '',
+              showCancel: false,
+              content: "分数：" + this.score * this.score,
+              success: function (res) {}
+            });
+          }
+          if (res.data === 'NoUser') {
+            api.show_toast('请完成注册信息填写')
+            app.getUserInfo()
           } else {
+            api.show_toast('网络出现问题，请重试')
             setTimeout(function () {
               wx.navigateBack({ //返回
                 delta: 1
@@ -82,15 +87,20 @@ Page({
     let question_list = this.data.question_list
     let i = this.data.index
     if (question_list[i].answer == dict[i]) {
-      this.score = this.score + 10
+      this.score = this.score + 1
     } else {
+      setTimeout(function () {
+        wx.navigateBack({ //返回
+          delta: 1
+        })
+      }, 1000);
       wx.showModal({
         title: '',
         showCancel: false,
-        content: "分数：" + this.score,
+        content: "分数：" + this.score * this.score,
         success: function (res) {}
       });
-      api.saveGrade(0, this.score)
+      api.saveGrade(0, this.score * this.score)
         .then((res) => {
           if (res.data === 'Ok') {
             setTimeout(function () {
@@ -98,6 +108,10 @@ Page({
                 delta: 1
               })
             }, 2000);
+          }
+          if (res.data === 'NoUser') {
+            api.show_toast('请完成注册信息填写')
+            app.getUserInfo()
           } else {
             setTimeout(function () {
               wx.navigateBack({ //返回
@@ -157,10 +171,10 @@ Page({
         wx.showModal({
           title: '',
           showCancel: false,
-          content: "分数：" + that.score,
+          content: "分数：" + that.score * that.score,
           success: function (res) {}
         });
-        api.saveGrade(0, that.score)
+        api.saveGrade(0, that.score * that.score)
           .then((data) => {
             setTimeout(function () {
               wx.navigateBack({ //返回

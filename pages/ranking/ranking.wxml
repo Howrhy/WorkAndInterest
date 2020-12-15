@@ -4,7 +4,7 @@
   <view class="ques-section-card">
     <view class="ques-card-head ques-card-bul"></view>
     <view class="ques-card-title">总分排行榜</view>
-    <scroll-view scroll-y="true" style="height: 78%;">
+    <scroll-view scroll-y="true" style="height: 78%;" bindscrolltolower="getMore">
       <ul class="ques-card-list" wx:for="{{ranking_list}}" wx:for-item="ranking" wx:key="index">
         <li wx:if="{{index < 3}}" class=" ques-card-list-{{index+1}}">
           <view class="ques-list-box clearfix">
