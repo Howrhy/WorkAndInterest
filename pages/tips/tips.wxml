@@ -1,0 +1,10 @@
+<!--ranking.wxml-->
+<view class='weather-wrapper'>
+  <view class='page'>
+    <view class='title'>说明</view>
+    <view class='content'>1.答题分两部分：期数答题和一站到底</view>
+    <view class='content'>2.期数答题得分满分为100分,共十题，一题10分。其中多选少选、错选均不得分。</view>
+    <view class='content'>3.一站到底得分为答对的题数的平方。如：答对2题得4分，答对10题得100分。</view>
+  </view>
+  <image class='weather-bg' src='../../images/qa_background.jpg'></image>
+</view>

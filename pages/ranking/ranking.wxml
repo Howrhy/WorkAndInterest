@@ -39,9 +39,10 @@
           <view class="ques-list-name-head">{{userInfo.name}}</view>
           <view class="ques-list-name-text">分数：{{userInfo.total_grade}}分</view>
         </view>
-        <span wx:if="{{userInfo.rankNo+1 <3}}"
+        <span wx:if="{{userInfo.rankNo+1 <=3}}"
           class="ques-list-name-icon item-icon00{{userInfo.rankNo+1}}">{{userInfo.rankNo+1}}</span>
-        <span wx:if="{{userInfo.rankNo+1 >2}}" class="ques-list-name-icon item-icon000">{{userInfo.rankNo+1}}</span>
+        <span wx:if="{{userInfo.rankNo+1 >3}}" class="ques-list-name-icon item-icon000">{{userInfo.rankNo+1}}</span>
+        <span wx:if="{{userInfo.rankNo+1 >500}}" class="ques-list-name-icon item-icon000">500+</span>
       </view>
     </view>
   </view>

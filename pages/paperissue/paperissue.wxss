@@ -38,7 +38,7 @@
 }
 
 .view_tupian_wenzi {
-  height: 120rpx;
+  height: 80rpx;
   display: flex;
   flex-direction: row;
   align-items: center;

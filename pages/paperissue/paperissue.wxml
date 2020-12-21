@@ -11,7 +11,7 @@
           <view class="view_wenzi2">
             <text class="text_small">第{{period.id}}期</text>
             <text>{{period.name}}</text>
-            <text class="text_small">时间：{{period.start_time}}至{{period.end_time}}</text>
+            <!-- <text class="text_small">时间：{{period.start_time}}至{{period.end_time}}</text> -->
           </view>
           <image wx:if="{{util.inof(finished_issues,period.id)>-1}}" class="image_2" src="../../images/finish.png" />
         </view>

@@ -38,7 +38,8 @@
 }
 
 .view_tupian_wenzi {
-  height: auto;
+  height: 100rpx;
+  width: 400rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -51,7 +52,7 @@
   margin: 30rpx;
   /* padding使得文字和图片不至于贴着边框 */
   padding: 30rpx;
-
+  margin-left: 150rpx;
 }
 
 /* 图片 */

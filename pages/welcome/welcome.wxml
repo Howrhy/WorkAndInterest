@@ -1,13 +1,9 @@
 <!--pages/welcome/welcome.wxml-->
 <!-- 授权弹框提示 -->
-<view class="container">
-  <view class="float" hidden='{{viewShowed}}'>
-    <view class='floatContent'>
-      <view class='floatText'>
-        <text>党的十九届五中全会精神</text>
-        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 开始挑战 </button>
-      </view>
-    </view>
-    <view style="display: flex; justify-content: center; position: relative; align-items: center;">如果点击无效，请将小程序删除后重新进入</view>
+<!--index.wxml-->
+<view class='weather-wrapper'>
+  <image class='weather-bg' src='https://guhang.fun/images/welcome_bg.png'></image>
+  <view class='confirm-button'>
+    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 开始学习 </button>
   </view>
 </view>

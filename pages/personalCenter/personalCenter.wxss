@@ -99,7 +99,7 @@ button {
 }
 
 .tuan1 {
-  width: 300rpx;
+  width: 400rpx;
   height: 400rpx;
   display: flex;
   position: fixed;

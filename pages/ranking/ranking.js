@@ -57,8 +57,8 @@ Page({
     if (that.data.scrolly == false) {
       return
     }
-    var pageNum = that.data.pageNum;
-    that.data.pageNum = pageNum + 1
+    var pageNum = that.data.pageNum + 1;
+    that.data.pageNum = pageNum
     wx.showLoading({
       title: ' 加载中',
       make: true
@@ -74,7 +74,6 @@ Page({
       },
       success: function (res) {
         var res = res.data;
-        console.log(res.length)
         if (res.length != 0) {
           that.data.ranking_list = that.data.ranking_list.concat(res)
           that.setData({

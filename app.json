@@ -11,7 +11,8 @@
     "pages/paperlist/paperlist",
     "pages/historyRecord/historyRecord",
     "pages/paperissue/paperissue",
-    "pages/fightRecord/fightRecord"
+    "pages/fightRecord/fightRecord",
+    "pages/tips/tips"
   ],
   "window": {
     "backgroundTextStyle": "light",

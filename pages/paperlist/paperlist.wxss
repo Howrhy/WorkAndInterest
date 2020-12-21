@@ -46,7 +46,7 @@ page {
 }
 
 .tuan2 {
-  width: 280rpx;
+  width: 400rpx;
   height: 400rpx;
   display: flex;
   position: fixed;

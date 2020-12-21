@@ -10,8 +10,9 @@
     <view class='choice' wx:if="{{question.question_type==0}}">
       <radio-group bindchange="handleChange" data-question_id="{{index}}">
         <label wx:for="{{question.choice_all}}" wx:for-item="choice" wx:key="{{choice.value}}">
-          <view>
-            <radio checked="{{choice.checked}}" style='transform:scale(0.7)' value="{{choice.value}}" />
+          <view style='align-items: center;display: flex;'>
+            <radio style='transform:scale(0.7) border: 10rpx solid #48b0b9;' checked="{{choice.checked}}"
+              value="{{choice.value}}" />
             {{choice.value}}.{{choice.name}}</view>
         </label>
       </radio-group>
@@ -21,8 +22,9 @@
     <view class='choice' wx:if="{{question.question_type==1}}">
       <checkbox-group bindchange="checkboxChange" data-question_id="{{index}}">
         <label wx:for="{{question.choice_all}}" wx:for-item="choice" wx:key="{{choice.value}}">
-          <view>
-            <checkbox checked="{{choice.checked}}" style='transform:scale(0.7)' value="{{choice.value}}" />
+          <view style='align-items: center;display: flex;'>
+            <checkbox style='transform:scale(0.7) border: 10rpx solid #48b0b9;' checked="{{choice.checked}}"
+              value="{{choice.value}}" />
             {{choice.value}}.{{choice.name}}</view>
         </label>
       </checkbox-group>
@@ -33,8 +35,9 @@
     <view class='choice' wx:if="{{question.question_type==2}}">
       <radio-group bindchange="judgeChange" data-question_id="{{index}}">
         <label wx:for="{{question.choice_all}}" wx:for-item="choice" wx:key="{{choice.value}}">
-          <view>
-            <radio checked="{{choice.checked}}" style='transform:scale(0.7)' value="{{choice.name}}" />
+          <view style='align-items: center;display: flex;'>
+            <radio style='transform:scale(0.7) border: 10rpx solid #48b0b9;' checked="{{choice.checked}}"
+              value="{{choice.name}}" />
             {{choice.name}}</view>
         </label>
       </radio-group>

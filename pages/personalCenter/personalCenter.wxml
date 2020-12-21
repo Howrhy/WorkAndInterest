@@ -36,8 +36,17 @@
       <image class='rg' src='../../images/icon/right.png'></image>
     </navigator>
   </view>
+  <view class='item'>
+    <navigator hover-class="none" url="../tips/tips">
+      <view class='iconbox'>
+        <image class='icon' src='../../images/icon/tips.png'></image>
+        <text class='content'>答题计分说明</text>
+      </view>
+      <image class='rg' src='../../images/icon/right.png'></image>
+    </navigator>
+  </view>
 </view>
 
 <view>
-  <image class="tuan1" src="../../images/tuan1.jpg" />
+  <image class="tuan1" src="../../images/tuan2.png" />
 </view>
