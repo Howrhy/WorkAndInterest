@@ -2,11 +2,11 @@
 .page {
   display: flex;
   flex-direction: column;
-  color: #A91219;
+  color: #ffffff;
   font-style: normal;
-  height: 80%;
+  height: 100%;
   font-weight: 700;
-  font-size: 32rpx;
+  font-size: 36rpx;
   font-family: ‘Trebuchet MS’, ‘Lucida Sans Unicode’, ‘Lucida Grande’, ‘Lucida Sans’, Arial, sans-serif;
 }
 
@@ -21,9 +21,9 @@
 
 
 .page .content {
-  margin-top: 200rpx;
+  margin-top: 220rpx;
   width: 76%;
-  height: 400rpx;
+  height: auto;
   display: flex;
   margin-left: 12%;
   margin-right: 12%;
@@ -32,7 +32,8 @@
 }
 
 .page .choice {
-  margin-top: 40rpx;
+  margin-top: 60rpx;
+  padding: 4rpx;
   width: 76%;
   margin-left: 12%;
   margin-right: 12%;
@@ -89,7 +90,7 @@
 
 .btn1 {
   width: 180rpx;
-  margin-top: 20rpx;
+  margin-top: 40rpx;
   background-color: orange;
   color: white;
   border-radius: 98rpx;

@@ -3,11 +3,11 @@
   padding-top: 300rpx;
   display: flex;
   flex-direction: column;
-  color: #A91219;
+  color: #ffffff;
   font-style: normal;
   height: auto;
   font-weight: 700;
-  font-size: 32rpx;
+  font-size: 36rpx;
   font-family: ‘Trebuchet MS’, ‘Lucida Sans Unicode’, ‘Lucida Grande’, ‘Lucida Sans’, Arial, sans-serif;
 }
 

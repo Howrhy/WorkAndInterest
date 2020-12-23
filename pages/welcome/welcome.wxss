@@ -24,8 +24,8 @@
 .confirm-button {
   align-items: center;
   justify-content: center;
-  width: 200rpx;
+  width: 240rpx;
   height: 200rpx;
-  margin-left: 280rpx;
-  margin-top: 600rpx;
+  margin-left: 270rpx;
+  margin-top: 700rpx;
 }

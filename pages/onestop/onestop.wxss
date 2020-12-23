@@ -4,9 +4,9 @@
   flex-direction: column;
   color: #A91219;
   font-style: normal;
-  height: 80%;
+  height: 100%;
   font-weight: 700;
-  font-size: 32rpx;
+  font-size: 36rpx;
   font-family: ‘Trebuchet MS’, ‘Lucida Sans Unicode’, ‘Lucida Grande’, ‘Lucida Sans’, Arial, sans-serif;
 }
 
@@ -23,7 +23,7 @@
 .page .content {
   margin-top: 80rpx;
   width: 76%;
-  height: 400rpx;
+  height: auto;
   display: flex;
   margin-left: 12%;
   margin-right: 12%;
