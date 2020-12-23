@@ -9,7 +9,12 @@ Page({
     hasUserInfo: false,
   },
   //事件处理函数
-  onLoad: function () {
+  onShow: function () {
+    if (wx.getStorageSync("openid") == '') {
+      wx.navigateTo({
+        url: '../welcome/welcome'
+      });
+    }
     let _this = this
     wx.getStorage({
       key: 'userInfo',
@@ -30,5 +35,4 @@ Page({
       path: '/pages/personalCenter/personalCenter'
     }
   },
-
 })

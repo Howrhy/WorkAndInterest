@@ -1,0 +1,85 @@
+/**index.wxss**/
+.page {
+  padding-top: 260rpx;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  font-style: normal;
+  height: auto;
+  font-weight: 700;
+  font-size: 36rpx;
+  font-family: ‘Trebuchet MS’, ‘Lucida Sans Unicode’, ‘Lucida Grande’, ‘Lucida Sans’, Arial, sans-serif;
+}
+
+.page .title {
+  width: 100%;
+  align-items: center;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+
+.page .content {
+  margin-top: 40rpx;
+  padding: 6rpx;
+  width: 70%;
+  height: auto;
+  display: flex;
+  margin-left: 100rpx;
+  margin-right: 30rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather {
+  text-align: center;
+  font-size: 40rpx;
+  line-height: 1.4;
+  opacity: 0.65;
+}
+
+.weather-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.weather-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.selfbutton {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn1 {
+  width: 180rpx;
+  margin-top: 20rpx;
+  background-color: orange;
+  color: white;
+  border-radius: 98rpx;
+}
+
+
+.btn1::after {
+  border-radius: 98rpx;
+}
+
+.btn2 {
+  width: 180rpx;
+  margin-top: 20rpx;
+  background-color: #A91219;
+  color: black;
+  border-radius: 98rpx;
+}
+
+.btn2::after {
+  border-radius: 98rpx;
+}

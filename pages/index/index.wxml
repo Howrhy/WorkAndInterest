@@ -1,10 +1,10 @@
 <!--index.wxml-->
 <view class='weather-wrapper'>
-  <image class='weather-bg' src='https://guhang.fun/images/qa_back.jpg'></image>
-  <image class='b_title' src="https://guhang.fun/images/badge.png"></image>
-  <image class='z_title' src="https://guhang.fun/images/19_5_zhong.png"></image>
+  <image class='weather-bg' src='../../images/qa_back.jpg'></image>
+  <image class='b_title' src="../../images/badge.png"></image>
+  <image class='z_title' src="../../images/19_5_zhong.png"></image>
   <block>
-    <navigator hover-class="none" url="../paperissue/paperissue">
+    <navigator hover-class="none" url="../alert/alert?flag=paperissue">
       <view class="view_tupian_wenzi">
         <!-- 包裹两行文字 -->
         <view class="view_wenzi2">
@@ -13,7 +13,7 @@
         <image class="image_2" src="../../images/icon/book.png" />
       </view>
     </navigator>
-    <navigator hover-class="none" url="../onestop/onestop">
+    <navigator hover-class="none" url="../alert/alert?flag=onestop">
       <view class="view_tupian_wenzi">
         <!-- 包裹两行文字 -->
         <view class="view_wenzi2">

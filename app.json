@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/welcome/welcome",
     "pages/index/index",
+    "pages/welcome/welcome",
     "pages/myInfo/myInfo",
     "pages/personalCenter/personalCenter",
     "pages/onestop/onestop",
@@ -12,7 +12,8 @@
     "pages/historyRecord/historyRecord",
     "pages/paperissue/paperissue",
     "pages/fightRecord/fightRecord",
-    "pages/tips/tips"
+    "pages/tips/tips",
+    "pages/alert/alert"
   ],
   "window": {
     "backgroundTextStyle": "light",

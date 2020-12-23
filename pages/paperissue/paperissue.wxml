@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class='weather-wrapper'>
-  <image class='weather-bg' src='https://guhang.fun/images/qa_back.jpg'></image>
-  <image class='z_title' src="https://guhang.fun/images/19_5_zhong.png"></image>
+  <image class='weather-bg' src='../../images/qa_back.jpg'></image>
+  <image class='z_title' src="../../images/19_5_zhong.png"></image>
 
   <scroll-view scroll-y="true" style="height: 83%;">
     <block wx:for="{{period_list}}" wx:for-item="period" wx:key="index">

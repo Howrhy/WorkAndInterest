@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const api = require('../../utils/api.js')
+const app = getApp()
 Page({
   data: {
     period_list: [],
@@ -13,40 +14,28 @@ Page({
     })
   },
   onLoad: function () {
-    let _this = this
-    wx.getStorage({
-      key: 'login_key',
-      success: (res) => {
-        _this.getdata(true)
-      },
-      fail(res) {
-        setTimeout(() => {
-          _this.getdata(true)
-        }, 1000)
-      }
-    })
+    if (!wx.getStorageSync('my_state')) {
+      wx.navigateTo({
+        url: '../welcome/welcome'
+      });
+    } else {
+      app.getUserInfo()
+    }
+    // let _this = this
+    // wx.getStorage({
+    //   key: 'login_key',
+    //   success: (res) => {
+    //     _this.getdata(true)
+    //   },
+    //   fail(res) {
+    //     setTimeout(() => {
+    //       _this.getdata(true)
+    //     }, 1000)
+    //   }
+    // })
   },
   oncancel: function () {
 
-  },
-  getdata: function (all) {
-    api.getissues()
-      .then((data) => {
-        if (data.data === 0) {
-          data.data = [],
-          api.show_toast('网络出现问题，请重试')
-        } else {
-          let period_list = data.data.data
-          this.data.period_list = period_list
-          let finished_issues = data.data.finished_issues
-          this.data.finished_issues = finished_issues
-          this.setData({
-            period_list: period_list,
-            finished_issues: finished_issues
-          })
-        }
-
-      })
   },
   onShareAppMessage: function () {
     return {

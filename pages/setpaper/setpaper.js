@@ -63,22 +63,29 @@ Page({
       }
     }
     api.show_toast("分数：" + score, 'success')
-    api.saveGrade(this.data.paperId, score, this.data.paperName)
-      .then((res) => {
-        if (res.data === 'Ok') {
-          setTimeout(function () {
-            wx.navigateBack({ //返回
-              delta: 1
-            })
-          }, 2000);
-        } else {
-          setTimeout(function () {
-            wx.navigateBack({ //返回
-              delta: 1
-            })
-          }, 2000);
-        }
-      })
+    if (wx.getStorageSync("openid") != '') {
+      api.saveGrade(this.data.paperId, score, this.data.paperName)
+        .then((res) => {
+          if (res.data === 'Ok') {
+            setTimeout(function () {
+              wx.navigateBack({ //返回
+                delta: 1
+              })
+            }, 2000);
+          } else {
+            setTimeout(function () {
+              wx.navigateBack({ //返回
+                delta: 1
+              })
+            }, 2000);
+          }
+        })
+    } else {
+      wx.navigateTo({
+        url: '../welcome/welcome'
+      });
+    }
+
     // this.update();
     //this.onLoad() //再次加载，实现返回上一页页面刷新
   },

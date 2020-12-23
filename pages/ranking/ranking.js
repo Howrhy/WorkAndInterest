@@ -33,17 +33,24 @@ Page({
         that.setData({
           ranking_list: ranking_list
         })
-        api.getMyRank().then((data) => {
-          if (data.data === "error") {
-            api.show_toast('请完成注册信息填写')
-            app.getUserInfo()
-          } else {
-            that.data.userInfo = data.data
-            that.setData({
-              userInfo: data.data
-            })
-          }
-        })
+        if (wx.getStorageSync("openid") != '') {
+          api.getMyRank().then((data) => {
+            if (data.data === "error") {
+              api.show_toast('请完成注册信息填写')
+              app.getUserInfo()
+            } else {
+              that.data.userInfo = data.data
+              that.setData({
+                userInfo: data.data
+              })
+            }
+          })
+        } else {
+          wx.navigateTo({
+            url: '../welcome/welcome'
+          });
+        }
+
       }
 
     })

@@ -22,12 +22,12 @@ App({
         this.goto_login()
       },
       fail: function () {
-        // wx.showModal({
-        //   title: '',
-        //   showCancel: false,
-        //   content: '请先点击开始挑战进行信息授权',
-        //   success: function (res) {}
-        // });
+        wx.showModal({
+          title: '',
+          showCancel: false,
+          content: '请授权后开始答题',
+          success: function (res) {}
+        });
       }
     })
   },

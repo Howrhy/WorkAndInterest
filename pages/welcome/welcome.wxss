@@ -27,5 +27,18 @@
   width: 240rpx;
   height: 200rpx;
   margin-left: 270rpx;
-  margin-top: 700rpx;
+  margin-top: 400rpx;
+}
+
+.z_title {
+  width: 480rpx;
+  height: 240rpx;
+  margin-left: 150rpx;
+}
+
+.b_title {
+  width: 200rpx;
+  height: 200rpx;
+  margin-left: 280rpx;
+  margin-top: 20rpx;
 }

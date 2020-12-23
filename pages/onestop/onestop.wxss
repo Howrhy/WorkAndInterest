@@ -2,7 +2,7 @@
 .page {
   display: flex;
   flex-direction: column;
-  color: #A91219;
+  color: #FFFFFF;
   font-style: normal;
   height: 100%;
   font-weight: 700;

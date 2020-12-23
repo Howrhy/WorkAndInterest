@@ -1,9 +1,17 @@
 <!--pages/welcome/welcome.wxml-->
 <!-- 授权弹框提示 -->
 <!--index.wxml-->
+<!--index.wxml-->
 <view class='weather-wrapper'>
-  <image class='weather-bg' src='https://guhang.fun/images/welcome_bg.png'></image>
-  <view class='confirm-button'>
-    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 开始学习 </button>
-  </view>
+  <image class='weather-bg' src='../../images/qa_back.jpg'></image>
+  <image class='b_title' src="../../images/badge.png"></image>
+  <image class='z_title' src="../../images/19_5_zhong.png"></image>
+  <!-- <image class='weather-bg' src='https://guhang.fun/images/qa_back.jpg'></image>
+  <image class='b_title' src="https://guhang.fun/images/badge.png"></image>
+  <image class='z_title' src="https://guhang.fun/images/19_5_zhong.png"></image> -->
+  <block>
+    <view class='confirm-button'>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击授权 </button>
+    </view>
+  </block>
 </view>
